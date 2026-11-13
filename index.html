@@ -28,7 +28,7 @@
   --max:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;overflow-x:clip}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -68,6 +68,10 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .nav.scrolled{background:rgba(4,5,11,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
 .nav img{height:26px;width:auto}
+.nav .brand{display:flex;align-items:center;gap:16px}
+.brand-sep{width:1px;height:28px;background:linear-gradient(180deg,transparent,rgba(159,212,255,.7),transparent)}
+.brand-name{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#fff;white-space:nowrap;text-shadow:0 0 18px rgba(43,127,255,.45)}
+.brand-name b{font-weight:800;background:linear-gradient(95deg,var(--cyan),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav .btn{--h:44px;padding:0 22px;font-size:14px}
 .nav .pill{display:none;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
 .dot{width:8px;height:8px;border-radius:50%;background:#35e08a;box-shadow:0 0 0 0 rgba(53,224,138,.6);animation:pulse 1.8s infinite}
@@ -145,7 +149,9 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .s-text{font-family:var(--display);font-weight:600;font-size:clamp(23px,2.5vw,38px);line-height:1.16;letter-spacing:-.03em;color:#e4e9f8}
 .s-text b{color:#fff;font-weight:800}
 .s-text .hl{color:var(--cyan)}
-.brandfly{list-style:none;display:flex;flex-wrap:wrap;gap:2px 24px;margin-top:30px;max-width:620px}
+.brandfly{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:34px;max-width:640px}
+.brandfly img{display:block;width:auto;filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
+.brandfly li.wm{font-size:clamp(22px,2.2vw,34px)}
 .brandfly li{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,42px);line-height:1.1;letter-spacing:-.04em;color:#fff}
 .brandfly li.o{color:transparent;-webkit-text-stroke:1.3px var(--cyan)}
 .s2-num{display:flex;align-items:flex-start;margin:2px 0 14px}
@@ -161,7 +167,9 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .s3-text .hl{color:var(--cyan);text-shadow:0 0 24px rgba(111,178,255,.55)}
 .scene:nth-child(4) .scene-grid{grid-template-columns:1fr 360px;gap:40px}
 .s4-text{font-size:clamp(20px,1.9vw,28px);margin-bottom:26px}
-.cert{line-height:1.2;width:min(100%,360px);aspect-ratio:1.414;border-radius:10px;padding:9px;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 0% 0%,#1d3a82 0%,#0d1b44 45%,#081230 100%);box-shadow:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px rgba(226,194,122,.35),0 0 60px -12px rgba(43,127,255,.55);transform:rotate(-3deg)}
+.cert{line-height:1.2;width:min(100%,360px);aspect-ratio:1.414;border-radius:10px;padding:9px;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 0% 0%,#1d3a82 0%,#0d1b44 45%,#081230 100%);box-shadow:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px rgba(226,194,122,.35),0 0 60px -12px rgba(43,127,255,.55);opacity:0;filter:blur(8px);transform:perspective(900px) rotateY(-55deg) rotate(-17deg) scale(.7);transition:opacity .6s ease,filter .6s ease,transform 1.2s cubic-bezier(.2,1.15,.3,1)}
+.cert.cert-in{opacity:1;filter:none;transform:rotate(-3deg)}
+.pin.static .cert{opacity:1;filter:none;transform:rotate(-3deg)}
 .cert::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 100% 100%,rgba(226,194,122,.07) 0 1px,transparent 1px 7px),repeating-radial-gradient(circle at 0% 0%,rgba(111,178,255,.06) 0 1px,transparent 1px 9px);pointer-events:none}
 .cert::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,226,160,.28),transparent);transform:skewX(-20deg);animation:certshine 5s ease-in-out infinite;pointer-events:none}
 @keyframes certshine{0%,60%{left:-60%}100%{left:130%}}
@@ -229,7 +237,9 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 /* marquee */
 .brands{border-block:1px solid var(--line);padding:28px 0;background:var(--bg2);overflow:hidden}
 .brands p{text-align:center;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
-.track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.track{display:flex;align-items:center;width:max-content;animation:marq 90s linear infinite}
+.track img{display:block;width:auto;opacity:.62;transition:opacity .3s,transform .3s}
+.track span:hover img{opacity:1;transform:scale(1.06)}
 .track span{font-family:var(--display);font-weight:700;font-size:clamp(18px,2vw,24px);color:rgba(255,255,255,.38);padding:0 34px;letter-spacing:-.01em;white-space:nowrap;display:flex;align-items:center;gap:34px}
 .track span::after{content:"✦";font-size:12px;color:var(--blue)}
 @keyframes marq{to{transform:translateX(-50%)}}
@@ -422,6 +432,10 @@ footer img{height:22px;width:auto;opacity:.8}
 .sticky .p{font-size:12px;color:var(--muted);line-height:1.25}
 .sticky .p b{display:block;font-family:var(--display);color:#fff;font-size:17px}
 .sticky .btn{--h:50px;padding:0 20px;font-size:15px}
+/* celular: o preço só aparece depois que o card de preço for visto */
+.sticky .p .pr{display:none}
+body.price-seen .sticky .p .pr{display:block;animation:planin .5s cubic-bezier(.2,.9,.2,1)}
+body.price-seen .sticky .p .pre{display:none}
 
 /* reveal: entradas dinâmicas */
 .rv{opacity:0;transform:translate3d(0,48px,0) scale(.97);filter:blur(10px);transition:opacity .9s ease,transform 1.2s cubic-bezier(.16,1,.3,1),filter .9s ease,clip-path 1.2s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
@@ -477,6 +491,8 @@ footer img{height:22px;width:auto;opacity:.8}
   .sticky{display:flex}
   .flare{top:30%}
   .nav .btn{display:none}
+.btn{white-space:normal;text-align:center;line-height:1.2;height:auto;min-height:var(--h);padding-block:12px}  .company-box > *{min-width:0}  .hero .eyebrow{font-size:10px;letter-spacing:.07em;gap:8px;padding:8px 12px 8px 10px;white-space:nowrap;max-width:100%}
+.nav img{height:20px}  .nav .brand{gap:11px}  .brand-sep{height:22px}  .brand-name{font-size:12px;letter-spacing:.12em}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -489,7 +505,7 @@ footer img{height:22px;width:auto;opacity:.8}
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap">
-    <a href="#top" aria-label="PS Varejo"><img src="assets/logo-branco.png" alt="PS Varejo" width="600" height="98"></a>
+    <a class="brand" href="#top" aria-label="PS Varejo · Escola de Líderes"><img src="assets/logo-branco.png" alt="PS Varejo" width="600" height="98"><span class="brand-sep" aria-hidden="true"></span><span class="brand-name">Escola de <b>Líderes</b></span></a>
     <div class="pill"><span class="dot"></span> Inscrições abertas · Turma 2027</div>
     <a class="btn" href="#oferta">Garantir vaga</a>
   </div>
@@ -552,7 +568,7 @@ footer img{height:22px;width:auto;opacity:.8}
                 que são <b>referência</b> no mercado.</span>
             </p>
             <ul class="brandfly" aria-label="Dudalina, Sunglass Hut, Billabong, adidas, Arezzo, Reserva">
-              <li data-l="x">Dudalina</li><li class="o" data-l="x">Sunglass Hut</li><li data-l="x">Billabong</li><li class="o" data-l="x">adidas</li><li data-l="x">Arezzo</li><li class="o" data-l="x">Reserva</li>
+              <li data-l="x"><img src="assets/logos/dudalina.png" alt="Dudalina" style="height:46px"></li><li data-l="x"><img src="assets/logos/sunglass-hut.png" alt="Sunglass Hut" style="height:29px"></li><li data-l="x"><img src="assets/logos/billabong.png" alt="Billabong" style="height:27px"></li><li data-l="x"><img src="assets/logos/adidas.png" alt="adidas" style="height:51px"></li><li data-l="x"><img src="assets/logos/arezzo.png" alt="Arezzo" style="height:27px"></li><li data-l="x"><img src="assets/logos/reserva.png" alt="Reserva" style="height:28px"></li>
             </ul>
           </div>
           <div class="part part-b">
@@ -583,7 +599,7 @@ footer img{height:22px;width:auto;opacity:.8}
                 <span class="ln" data-l>além de receber um</span>
                 <span class="ln" data-l><b>certificado</b> no final.</span>
               </p>
-              <div class="cert" data-l="cert" aria-hidden="true">
+              <div class="cert" aria-hidden="true">
                 <div class="cert-frame">
                   <div class="cert-head"><img src="assets/icone-branco.png" alt=""><span>PS VAREJO</span></div>
                   <div class="cert-title">Certificado</div>
@@ -617,9 +633,9 @@ footer img{height:22px;width:auto;opacity:.8}
 <!-- BRANDS -->
 <div class="brands">
   <p>Marcas na trajetória de Patrick Salomão e da PS Varejo</p>
-  <div class="track" aria-label="Dudalina, Sunglass Hut, Billabong, adidas, Reserva, Mormaii, Forum, Jorge Bischoff, Intimissimi, Lilica & Tigor, Moncloa, Bottero, Loungerie, Criamigos, Usaflex, Crefaz">
-    <span>Sunglass Hut</span><span>Billabong</span><span>adidas</span><span>Reserva</span><span>Mormaii</span><span>Dudalina</span><span>Forum</span><span>Jorge Bischoff</span><span>Intimissimi</span><span>Lilica &amp; Tigor</span><span>Moncloa</span><span>Bottero</span><span>Loungerie</span><span>Criamigos</span><span>Usaflex</span><span>Crefaz</span>
-    <span aria-hidden="true">Sunglass Hut</span><span aria-hidden="true">Billabong</span><span aria-hidden="true">adidas</span><span aria-hidden="true">Reserva</span><span aria-hidden="true">Mormaii</span><span aria-hidden="true">Dudalina</span><span aria-hidden="true">Forum</span><span aria-hidden="true">Jorge Bischoff</span><span aria-hidden="true">Intimissimi</span><span aria-hidden="true">Lilica &amp; Tigor</span><span aria-hidden="true">Moncloa</span><span aria-hidden="true">Bottero</span><span aria-hidden="true">Loungerie</span><span aria-hidden="true">Criamigos</span><span aria-hidden="true">Usaflex</span><span aria-hidden="true">Crefaz</span>
+  <div class="track" aria-label="adidas, Reserva, Sunglass Hut, Billabong, Dudalina, Arezzo, Intimissimi, Jorge Bischoff, Forum, Mormaii, Crefaz, CVC, Portobello Shop, Usaflex, Bibi, Grupo HOPE, Calzedonia, Oral Sin, Bottero, Loungerie, Criamigos, Imaginarium, Pampili, Trivor, UV.Line, Mariana Amaral, adidas Originals, Natural One, Galeria, Mil Bijus, Palhadór, Cantão">
+    <span><img src="assets/logos/adidas.png" alt="adidas" style="height:42px" loading="lazy"></span><span><img src="assets/logos/reserva.png" alt="Reserva" style="height:23px" loading="lazy"></span><span><img src="assets/logos/sunglass-hut.png" alt="Sunglass Hut" style="height:24px" loading="lazy"></span><span><img src="assets/logos/billabong.png" alt="Billabong" style="height:23px" loading="lazy"></span><span><img src="assets/logos/dudalina.png" alt="Dudalina" style="height:38px" loading="lazy"></span><span><img src="assets/logos/arezzo.png" alt="Arezzo" style="height:22px" loading="lazy"></span><span><img src="assets/logos/intimissimi.png" alt="Intimissimi" style="height:24px" loading="lazy"></span><span><img src="assets/logos/jorge-bischoff.png" alt="Jorge Bischoff" style="height:22px" loading="lazy"></span><span><img src="assets/logos/forum.png" alt="Forum" style="height:27px" loading="lazy"></span><span><img src="assets/logos/mormaii.png" alt="Mormaii" style="height:38px" loading="lazy"></span><span><img src="assets/logos/crefaz.png" alt="Crefaz" style="height:23px" loading="lazy"></span><span><img src="assets/logos/cvc.png" alt="CVC" style="height:43px" loading="lazy"></span><span><img src="assets/logos/portobello.png" alt="Portobello Shop" style="height:34px" loading="lazy"></span><span><img src="assets/logos/usaflex.png" alt="Usaflex" style="height:26px" loading="lazy"></span><span><img src="assets/logos/bibi.png" alt="Bibi" style="height:34px" loading="lazy"></span><span><img src="assets/logos/grupo-hope.png" alt="Grupo HOPE" style="height:31px" loading="lazy"></span><span><img src="assets/logos/calzedonia.png" alt="Calzedonia" style="height:24px" loading="lazy"></span><span><img src="assets/logos/oral-sin.png" alt="Oral Sin" style="height:26px" loading="lazy"></span><span><img src="assets/logos/bottero.png" alt="Bottero" style="height:22px" loading="lazy"></span><span><img src="assets/logos/loungerie.png" alt="Loungerie" style="height:27px" loading="lazy"></span><span><img src="assets/logos/criamigos.png" alt="Criamigos" style="height:27px" loading="lazy"></span><span><img src="assets/logos/imaginarium.png" alt="Imaginarium" style="height:46px" loading="lazy"></span><span><img src="assets/logos/pampili.png" alt="Pampili" style="height:38px" loading="lazy"></span><span><img src="assets/logos/trivor.png" alt="Trivor" style="height:28px" loading="lazy"></span><span><img src="assets/logos/uv-line.png" alt="UV.Line" style="height:33px" loading="lazy"></span><span><img src="assets/logos/mariana-amaral.png" alt="Mariana Amaral" style="height:22px" loading="lazy"></span><span><img src="assets/logos/adidas-originals.png" alt="adidas Originals" style="height:49px" loading="lazy"></span><span><img src="assets/logos/natural-one.png" alt="Natural One" style="height:50px" loading="lazy"></span><span><img src="assets/logos/galeria.png" alt="Galeria" style="height:50px" loading="lazy"></span><span><img src="assets/logos/mil-bijus.png" alt="Mil Bijus" style="height:34px" loading="lazy"></span><span><img src="assets/logos/palhador.png" alt="Palhadór" style="height:23px" loading="lazy"></span><span><img src="assets/logos/cantao.png" alt="Cantão" style="height:37px" loading="lazy"></span>
+    <span aria-hidden="true"><img src="assets/logos/adidas.png" alt="" style="height:42px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/reserva.png" alt="" style="height:23px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/sunglass-hut.png" alt="" style="height:24px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/billabong.png" alt="" style="height:23px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/dudalina.png" alt="" style="height:38px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/arezzo.png" alt="" style="height:22px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/intimissimi.png" alt="" style="height:24px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/jorge-bischoff.png" alt="" style="height:22px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/forum.png" alt="" style="height:27px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/mormaii.png" alt="" style="height:38px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/crefaz.png" alt="" style="height:23px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/cvc.png" alt="" style="height:43px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/portobello.png" alt="" style="height:34px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/usaflex.png" alt="" style="height:26px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/bibi.png" alt="" style="height:34px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/grupo-hope.png" alt="" style="height:31px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/calzedonia.png" alt="" style="height:24px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/oral-sin.png" alt="" style="height:26px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/bottero.png" alt="" style="height:22px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/loungerie.png" alt="" style="height:27px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/criamigos.png" alt="" style="height:27px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/imaginarium.png" alt="" style="height:46px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/pampili.png" alt="" style="height:38px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/trivor.png" alt="" style="height:28px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/uv-line.png" alt="" style="height:33px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/mariana-amaral.png" alt="" style="height:22px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/adidas-originals.png" alt="" style="height:49px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/natural-one.png" alt="" style="height:50px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/galeria.png" alt="" style="height:50px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/mil-bijus.png" alt="" style="height:34px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/palhador.png" alt="" style="height:23px" loading="lazy"></span><span aria-hidden="true"><img src="assets/logos/cantao.png" alt="" style="height:37px" loading="lazy"></span>
   </div>
 </div>
 
@@ -829,7 +845,7 @@ footer img{height:22px;width:auto;opacity:.8}
 </aside>
 
 <div class="sticky" id="sticky">
-  <div class="p">Escola de Líderes<b>10x R$ 69,79</b></div>
+  <div class="p">Escola de Líderes<b class="pre">Inscrições abertas</b><b class="pr">10x R$ 69,79</b></div>
   <a class="btn" data-checkout href="#">Garantir vaga</a>
 </div>
 
@@ -874,6 +890,11 @@ ENCONTROS.forEach((e,i) => {
 });
 tl.insertAdjacentHTML('beforeend', `<div class="step xmas rv"><span class="m">✦ ${EXTRA[0]}</span><div><h3>${EXTRA[1]}</h3><p>${EXTRA[2]}</p></div></div>`);
 
+// marca quando o card de preço já foi visto (libera o preço na barra fixa do celular)
+(function(){
+  const price = document.querySelector('.offer .price'); if (!price) return;
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { document.body.classList.add('price-seen'); o.disconnect(); } }), {threshold:.35}).observe(price);
+})();
 // oferta: alterna entre inscrição individual e em dupla
 (function(){
   const tabs = document.querySelector('.plan-tabs'); if (!tabs) return;
@@ -977,7 +998,19 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
     screens = mq.matches
       ? parts.map(pt => ({ fade: pt, scene: pt.closest('.scene'), parts: [pt] }))
       : sceneEls.map(s => ({ fade: s, scene: s, parts: [...s.querySelectorAll('.part')] }));
-    screens.forEach(sc => { sc.items = sc.parts.flatMap(pt => [...pt.querySelectorAll('[data-l]')]); });
+    screens.forEach(sc => {
+      sc.items = sc.parts.flatMap(pt => [...pt.querySelectorAll('[data-l]')]);
+      // momento de entrada de cada item: a 2ª cena da tela espera uma pausa (GAP) e entra mais rápido (B_SPEED)
+      const GAP = .14, B_SPEED = .6, span = IN_B - IN_A - DUR_IN;
+      const na = sc.parts[0].querySelectorAll('[data-l]').length, nb = sc.items.length - na;
+      if (nb > 0) {
+        const u = (span - GAP) / Math.max(1, (na - 1) + (nb - 1) * B_SPEED);
+        sc.items.forEach((el, j) => { el._start = j < na ? j * u : (na - 1) * u + GAP + (j - na) * u * B_SPEED; });
+      } else {
+        const u = na > 1 ? span / (na - 1) : 0;
+        sc.items.forEach((el, j) => { el._start = j * u; });
+      }
+    });
   }
   let counted = false, cRaf = 0;
   function countUp(){
@@ -1000,11 +1033,10 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
       sc.fade.style.opacity = vis.toFixed(3);
       sceneVis.set(sc.scene, Math.max(sceneVis.get(sc.scene) || 0, vis));
       const n = sc.items.length;
-      const inStep = n > 1 ? (IN_B - IN_A - DUR_IN) / (n - 1) : 0;
       const outStep = n > 1 ? (OUT_B - HOLD_END - DUR_OUT) / (n - 1) : 0;
       const inA = i === 0 ? -(.45 * innerHeight / total) * N : IN_A; // a 1ª cena começa a entrar antes da tela fixar
       sc.items.forEach((el, j) => {
-        const kin = ease(cl((lt - inA - j * inStep) / DUR_IN));
+        const kin = ease(cl((lt - inA - el._start) / DUR_IN));
         const kout = i === N - 1 ? 0 : ease(cl((lt - HOLD_END - j * outStep) / DUR_OUT));
         const v = kin * (1 - kout), type = el.dataset.l;
         el._kin = kin; el._v = v;
@@ -1012,12 +1044,17 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
         el.style.filter = v < .99 ? `blur(${((1 - v) * 8).toFixed(1)}px)` : 'none';
         if (type === 'x') el.style.transform = `translate(${((1 - kin) * 70).toFixed(1)}px, ${(-kout * 30).toFixed(1)}px)`;
         else if (type === 'xl') el.style.transform = `translate(${((1 - kin) * -110).toFixed(1)}px, ${(-kout * 36).toFixed(1)}px)`;
-        else if (type === 'cert') el.style.transform = `perspective(900px) rotateY(${((1 - kin) * -55).toFixed(1)}deg) rotate(${((1 - kin) * -14 - 3).toFixed(1)}deg) scale(${(.7 + .3 * kin).toFixed(3)})`;
         else el.style.transform = `translateY(${((1 - kin) * 34 - kout * 34).toFixed(1)}px)`;
         if (type === 'num') {
           if (kin > .5 && !counted) { counted = true; countUp(); }
           else if (kin < .02 && counted) { counted = false; cancelAnimationFrame(cRaf); if (yrs) yrs.textContent = '0'; }
         }
+      });
+      // certificado: entra sozinho (animação por tempo) assim que a linha "certificado no final" aparece
+      sc.parts.forEach(pt => {
+        const c = pt.querySelector('.cert'); if (!c) return;
+        const its = [...pt.querySelectorAll('[data-l]')], last = its[its.length - 1];
+        if (last._v > .6) c.classList.add('cert-in'); else if (last._v < .2) c.classList.remove('cert-in');
       });
       // card de vidro: entra com o primeiro item de dentro e sai com o último
       sc.parts.forEach(pt => {
