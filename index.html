@@ -28,7 +28,7 @@
   --max:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{background:#04050b;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -135,6 +135,16 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .pin-steps li.done::before{opacity:.7}
 .pin-steps li.on::before,.pin-steps li.done::before{background:var(--blue);border-color:var(--blue2);box-shadow:0 0 14px rgba(43,127,255,.7)}
 .scene{position:absolute;inset:0;z-index:2;opacity:0;display:flex;align-items:center}
+/* dica de rolagem: aparece quando o usuário para de rolar dentro das cenas */
+.pin-hint{position:fixed;left:50%;bottom:calc(clamp(14px,3vh,30px) + 58px);z-index:6;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;opacity:0;transform:translate(-50%,10px);transition:opacity .45s ease,transform .45s ease}
+.pin-hint.show{opacity:1;transform:translate(-50%,0)}
+.pin-hint span{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.pin-hint i{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(43,127,255,.18);border:1px solid rgba(111,178,255,.5);box-shadow:0 0 24px -4px rgba(43,127,255,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pin-hint i::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(111,178,255,.6);animation:hintring 1.8s ease-out infinite}
+.pin-hint svg{width:18px;height:18px;color:#fff;animation:hintbob 1.4s ease-in-out infinite}
+@keyframes hintbob{0%,100%{transform:translateY(-3px);opacity:.7}50%{transform:translateY(4px);opacity:1}}
+@keyframes hintring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.pin.static .pin-hint{display:none}
 .scene-bg{position:absolute;inset:0}
 .scene-bg img{width:100%;height:100%;object-fit:cover;object-position:30% 30%;filter:brightness(.5) saturate(1.15);transform:scale(var(--hs,1.06));will-change:transform}
 .scene-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
@@ -206,8 +216,9 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
   /* no celular/tablet o texto e o card aparecem em sequência, um por tela, sobre o mesmo fundo */
   .pin{height:780vh}
   .scene-grid{display:block;position:absolute;inset:0;padding:0}
-  .part{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:80px 22px 100px;opacity:0}
-  .part-b{margin:0}
+  .part{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:calc(env(safe-area-inset-top) + clamp(92px,15svh,140px)) 22px 170px;opacity:0}
+  .part-b{margin:0;align-self:stretch}
+  .pin-hint{bottom:calc(112px + env(safe-area-inset-bottom))}
   .pin.static .scene-grid{position:relative}
   .pin.static .part{position:relative;opacity:1}
   .pin-steps li{font-size:0;gap:0}
@@ -223,6 +234,8 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 }
 @media(max-width:760px){
   .pin{margin-top:56px}
+  /* celular: header sólido, assim o Safari pinta a área da câmera/barra de status com a mesma cor */
+  .nav,.nav.scrolled{background:#04050b;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line)}
   .brandfly{gap:0 18px;margin-top:24px}
   .chance-cta,.chance-cta .btn{width:100%}
 }
@@ -557,6 +570,7 @@ body.price-seen .sticky .p .pre{display:none}
     <div class="pin-stage">
       <div class="pin-bar" aria-hidden="true"><i></i></div>
       <ol class="pin-steps" aria-hidden="true"><li>Quem sou</li><li>Experiência</li><li>Na prática</li><li>Certificado</li></ol>
+      <div class="pin-hint" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></i><span>Role para continuar</span></div>
 
       <!-- tela 1: fundo assets/pin-scroll/1.webp -->
       <div class="scene">
@@ -986,6 +1000,8 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
   const sceneEls = [...pin.querySelectorAll('.scene')];
   const parts = [...pin.querySelectorAll('.part')];
   const steps = [...pin.querySelectorAll('.pin-steps li')];
+  const hint = pin.querySelector('.pin-hint');
+  let idleT = 0;
   const mq = matchMedia('(max-width: 980px)');
   const cl = v => Math.max(0, Math.min(1, v));
   const ease = t => 1 - Math.pow(1 - t, 3);
@@ -1081,7 +1097,16 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
     if (active < 0) active = lastActive; lastActive = active;
     steps.forEach((li, i) => { li.classList.toggle('on', i === active); li.classList.toggle('done', i < active); });
   }
-  const req = () => { if (!raf) raf = requestAnimationFrame(update); };
+  // dica "role para continuar": some enquanto rola e volta após uma pausa (até a última cena)
+  function hintIdle(){
+    if (!hint) return;
+    hint.classList.remove('show'); clearTimeout(idleT);
+    idleT = setTimeout(() => {
+      const r = pin.getBoundingClientRect(), p = -r.top / (pin.offsetHeight - innerHeight);
+      if (r.top < innerHeight * .8 && p < 1 - .4 / screens.length) hint.classList.add('show'); // some quando a última cena já entrou
+    }, 600);
+  }
+  const req = () => { if (!raf) raf = requestAnimationFrame(update); hintIdle(); };
   build();
   mq.addEventListener('change', () => { build(); update(); });
   addEventListener('scroll', req, {passive:true}); addEventListener('resize', req); update();
