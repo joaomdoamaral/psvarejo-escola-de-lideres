@@ -120,19 +120,24 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .ans-b{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.8vw,66px);line-height:1;letter-spacing:-.045em;margin-top:6px;background:linear-gradient(95deg,#fff 0%,var(--cyan) 40%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(43,127,255,.35))}
 /* capítulos: a foto fica fixa ao fundo de cada capítulo e o conteúdo rola naturalmente por cima */
 .story{overflow:clip}
-.chapters{position:relative;margin:72px 0 24px}
+.chapters{position:relative;margin:72px 0 24px;--stick:calc(76px + env(safe-area-inset-top) + clamp(16px,4vh,40px))}
 .chap{position:relative;isolation:isolate}
 /* a cena atual fica travada no topo enquanto a próxima sobe por cima dela */
-.chap:not(:last-child){padding-bottom:100vh;padding-bottom:100svh}
 .chap + .chap{margin-top:-100vh;margin-top:-100svh}
 .chap-bg{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;clip-path:inset(var(--ci,0%) round var(--cr,0px));transform:translateY(calc(var(--cv,0)*-7%)) scale(calc(1 - var(--cv,0)*.07));filter:brightness(calc(1 - var(--cv,0)*.65));transform-origin:50% 0;will-change:clip-path,transform}
 .chap-bg img{width:100%;height:100%;object-fit:cover;object-position:30% 30%;filter:brightness(.5) saturate(1.15);transform:scale(var(--hs,1.12));will-change:transform}
 .chap-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
 /* a cena que sobe por cima não escurece a borda de cima, para a entrada ficar visível */
 .chap + .chap .chap-bg::after{background:linear-gradient(180deg,rgba(4,5,11,.35) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
-.chap-body{position:relative;z-index:2;margin-top:-100vh;margin-top:-100svh}
-.beat{min-height:85vh;min-height:85svh;display:flex;align-items:center;padding:110px 0 100px}
-.beat-in{width:min(660px,100%)}
+/* slides empilhados: cada slide trava logo abaixo do header; o próximo sobe por baixo
+   e só cobre o anterior quando chega perto do topo */
+.chapters .chap-body{position:relative;z-index:2;margin-top:-100vh;margin-top:-100svh;padding-top:38vh;padding-top:38svh;padding-bottom:0}
+/* espaçador no fim: mantém o último slide travado enquanto o próximo capítulo sobe (padding não conta para o sticky) */
+.chap-body::after{content:"";display:block;height:160vh;height:160svh}
+.chap:last-child .chap-body::after{height:45vh;height:45svh}
+.beat{position:sticky;top:var(--stick);display:flex}
+.beat + .beat{margin-top:75vh;margin-top:75svh}
+.beat-in{width:min(660px,100%);transform-origin:50% 0;will-change:opacity,transform}
 .beat-r{justify-content:flex-end}
 .beat-r .beat-in{width:min(500px,100%)}
 /* etapas: pílula fixa e clicável enquanto os capítulos estão na tela */
@@ -211,7 +216,6 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .chance p{font-size:clamp(16px,1.25vw,18px);color:#c9d2ee;margin-top:16px;max-width:520px}
 .chance-cta{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 @media(max-width:980px){
-  .beat{padding:96px 0 120px;align-items:center}
   .beat-r{justify-content:stretch}
   .beat-in,.beat-r .beat-in{width:100%}
   .pin-steps{bottom:calc(96px + env(safe-area-inset-bottom))}
@@ -1001,8 +1005,9 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
   beats.forEach(bt => bt.querySelectorAll('[data-l]').forEach((el, i) => el.style.setProperty('--i', i)));
   steps.forEach((li, i) => li.addEventListener('click', () => {
     const b = beats[i]; if (!b) return;
-    const box = b.querySelector('.beat-in').getBoundingClientRect();
-    scrollTo({ top: scrollY + box.top - (innerHeight - box.height) / 2, behavior: 'smooth' });
+    // posição "natural" do slide (sem o travamento), para rolar até o ponto em que ele trava no topo
+    b.style.position = 'relative'; const top = b.getBoundingClientRect().top + scrollY; b.style.position = '';
+    scrollTo({ top: top - parseFloat(getComputedStyle(b).top) + 2, behavior: 'smooth' });
   }));
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
     root.classList.add('static'); beats.forEach(b => b.classList.add('in')); if (yrs) yrs.textContent = '13'; return;
@@ -1040,8 +1045,20 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
     });
     const rr = root.getBoundingClientRect();
     root.classList.toggle('is-live', rr.top < vh * .45 && rr.bottom > vh * .55);
+    // slide travado no topo: some aos poucos quando o próximo (do mesmo capítulo) chega perto
+    beats.forEach((b, i) => {
+      const nx = beats[i + 1], inner = b.querySelector('.beat-in');
+      let f = 0;
+      if (nx && nx.parentNode === b.parentNode) {
+        const stick = parseFloat(getComputedStyle(b).top), gap = nx.getBoundingClientRect().top - stick;
+        f = cl(1 - gap / (vh * .32));
+      }
+      inner.style.opacity = f ? (1 - f).toFixed(3) : '';
+      inner.style.transform = f ? `translateY(${(-f * 40).toFixed(1)}px) scale(${(1 - f * .06).toFixed(3)})` : '';
+      inner.style.filter = f > .01 ? `blur(${(f * 6).toFixed(1)}px)` : '';
+    });
     let active = 0;
-    beats.forEach((b, i) => { if (b.querySelector('.beat-in').getBoundingClientRect().top < vh * .6) active = i; });
+    beats.forEach((b, i) => { if (b.getBoundingClientRect().top < vh * .6) active = i; });
     if (active !== last) { last = active; steps.forEach((li, i) => { li.classList.toggle('on', i === active); li.classList.toggle('done', i < active); }); }
   }
   const req = () => { if (!raf) raf = requestAnimationFrame(update); };
