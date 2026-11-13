@@ -14,7 +14,7 @@
 <link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width: 760px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,500&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#04050b; --bg2:#080b17; --bg3:#0d1124;
@@ -161,17 +161,28 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .s3-text .hl{color:var(--cyan);text-shadow:0 0 24px rgba(111,178,255,.55)}
 .scene:nth-child(4) .scene-grid{grid-template-columns:1fr 360px;gap:40px}
 .s4-text{font-size:clamp(20px,1.9vw,28px);margin-bottom:26px}
-.cert{width:min(100%,330px);aspect-ratio:1.45;border-radius:14px;padding:20px 24px;display:flex;flex-direction:column;background:linear-gradient(145deg,#f7f9ff,#dfe8fb);color:#1c2150;box-shadow:0 30px 80px -20px rgba(43,127,255,.7);position:relative;overflow:hidden;transform:rotate(-3deg)}
-.cert::before{content:"";position:absolute;inset:8px;border:1px solid rgba(39,41,95,.25);border-radius:9px;pointer-events:none}
-.cert::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-20deg);animation:certshine 4.5s ease-in-out infinite}
+.cert{line-height:1.2;width:min(100%,360px);aspect-ratio:1.414;border-radius:10px;padding:9px;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 0% 0%,#1d3a82 0%,#0d1b44 45%,#081230 100%);box-shadow:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px rgba(226,194,122,.35),0 0 60px -12px rgba(43,127,255,.55);transform:rotate(-3deg)}
+.cert::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 100% 100%,rgba(226,194,122,.07) 0 1px,transparent 1px 7px),repeating-radial-gradient(circle at 0% 0%,rgba(111,178,255,.06) 0 1px,transparent 1px 9px);pointer-events:none}
+.cert::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,226,160,.28),transparent);transform:skewX(-20deg);animation:certshine 5s ease-in-out infinite;pointer-events:none}
 @keyframes certshine{0%,60%{left:-60%}100%{left:130%}}
-.cert-top{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:13px}
-.cert-top img{width:22px;height:22px;filter:brightness(0) saturate(100%) invert(14%) sepia(40%) saturate(2000%) hue-rotate(220deg)}
-.cert small{margin-top:auto;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#4a5291}
-.cert strong{font-family:var(--display);font-size:clamp(18px,1.7vw,23px);letter-spacing:-.02em;color:#27295f}
-.cert-name{font-family:var(--display);font-style:italic;font-size:13px;color:#2b7fff;margin-top:6px;padding-bottom:6px;border-bottom:1px solid rgba(39,41,95,.25)}
-.cert-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:10px;color:#4a5291}
-.cert-foot i{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle,#ffd36b,#e0a11b);box-shadow:0 0 0 3px rgba(224,161,27,.25)}
+.cert-frame{position:relative;z-index:1;height:100%;border:1px solid rgba(226,194,122,.75);outline:1px solid rgba(226,194,122,.25);outline-offset:3px;border-radius:6px;padding:10px 14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.cert-frame::before,.cert-frame::after{content:"";position:absolute;width:8px;height:8px;border:1px solid #e2c27a;transform:rotate(45deg);background:#0d1b44;top:-5px}
+.cert-frame::before{left:calc(50% - 4px)}
+.cert-frame::after{top:auto;bottom:-5px;left:calc(50% - 4px)}
+.cert-head{display:flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:8.5px;letter-spacing:.26em;color:#e2c27a}
+.cert-head img{width:14px;height:14px;filter:brightness(0) saturate(100%) invert(83%) sepia(25%) saturate(640%) hue-rotate(358deg) brightness(95%)}
+.cert-title{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:22px;line-height:1;letter-spacing:.16em;text-transform:uppercase;margin-top:6px;background:linear-gradient(180deg,#f8e7b5,#c99f4c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cert-sub{font-size:7.5px;letter-spacing:.32em;text-transform:uppercase;color:rgba(226,194,122,.85);margin-top:4px}
+.cert-prog{font-family:var(--display);font-weight:800;font-size:16px;color:#fff;letter-spacing:-.01em;margin-top:auto}
+.cert-to{font-size:8px;letter-spacing:.08em;color:#aeb9dc;margin-top:3px}
+.cert-to em{display:block;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:14px;letter-spacing:0;color:#fff;margin-top:1px;padding:0 20px 3px;border-bottom:1px solid rgba(226,194,122,.55)}
+.cert-foot{width:100%;display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto}
+.cert-sign{text-align:left}
+.cert-sign span{display:block;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:11px;color:#e9edf8;border-top:1px solid rgba(226,194,122,.55);padding:2px 8px 0 0}
+.cert-sign small{font-size:6.5px;letter-spacing:.14em;text-transform:uppercase;color:#93a0c8}
+.cert-seal{position:relative;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff1c4,#e2c27a 42%,#a87b2c 100%);box-shadow:0 0 0 3px rgba(226,194,122,.22),0 4px 12px rgba(0,0,0,.45)}
+.cert-seal::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px dashed rgba(90,61,12,.55)}
+.cert-seal b{font-family:var(--display);font-size:7.5px;font-weight:800;color:#5a3d0c;letter-spacing:.04em}
 /* sem animação: cenas empilhadas */
 .pin.static{height:auto}
 .pin.static .pin-stage{position:relative;height:auto}
@@ -285,7 +296,14 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 
 /* offer */
 .offer{background:radial-gradient(60% 50% at 50% 30%,rgba(43,127,255,.22),transparent 70%),var(--bg)}
-.offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin-top:64px;align-items:stretch}
+.offer-grid{display:flex;flex-direction:column;align-items:center;margin-top:56px}
+.offer .stack{width:100%;max-width:900px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px}
+.offer .stack h3{grid-column:1/-1}
+.bridge{display:flex;flex-direction:column;align-items:center;gap:14px;margin:34px 0 30px;text-align:center}
+.bridge i{display:block;width:2px;height:70px;border-radius:2px;background:linear-gradient(180deg,transparent,var(--blue2));box-shadow:0 0 14px rgba(43,127,255,.7)}
+.bridge span{font-family:var(--display);font-weight:700;font-size:clamp(20px,2vw,28px);letter-spacing:-.02em;color:#fff}
+.bridge small{display:block;font-family:var(--body);font-weight:500;font-size:14px;color:var(--muted);letter-spacing:0;margin-top:6px}
+.offer .price{width:100%;max-width:520px}
 .stack{border:1px solid var(--line2);border-radius:28px;background:var(--bg2);padding:36px}
 .stack h3{font-size:14px;font-family:var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-weight:600;margin-bottom:12px}
 .si{display:flex;gap:16px;padding:18px 0;border-bottom:1px dashed var(--line2)}
@@ -303,11 +321,11 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .price-in{height:100%;border-radius:26px;background:linear-gradient(180deg,#0d1430,#070a16 60%);padding:40px 34px;display:flex;flex-direction:column;text-align:center;overflow:hidden;position:relative}
 .price-in::before{content:"";position:absolute;top:-180px;left:50%;width:420px;height:420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(43,127,255,.45),transparent 65%)}
 .price-in > *{position:relative}
-.price .logo-ic{width:54px;height:auto;margin:0 auto 18px}
-.price .t{font-family:var(--display);font-weight:800;font-size:23px;letter-spacing:-.02em}
+.price .logo-ic{width:30px;height:auto;margin:0;flex:none}
+.price .t{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-weight:800;font-size:23px;letter-spacing:-.02em}
 .price .s{color:var(--muted);font-size:14.5px;margin-top:4px}
-.amount{margin:30px 0 6px;font-family:var(--display);line-height:1}
-.amount small{display:block;font-size:15px;color:var(--muted);font-weight:600;margin-bottom:8px;font-family:var(--body)}
+.amount{display:flex;justify-content:center;align-items:flex-start;gap:12px;margin:26px 0 6px;font-family:var(--display);line-height:1}
+.amount small{display:block;max-width:96px;text-align:right;font-size:15px;line-height:1.25;color:var(--muted);font-weight:600;margin-top:.55em;font-family:var(--body)}
 .amount .v{font-size:clamp(52px,6vw,70px);font-weight:800;letter-spacing:-.05em;background:linear-gradient(180deg,#fff,#a9cfff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .amount .v sup{font-size:.38em;vertical-align:.95em;margin-right:4px;letter-spacing:0}
 .total{color:var(--muted);font-size:14.5px;margin-bottom:28px}
@@ -423,7 +441,8 @@ footer img{height:22px;width:auto;opacity:.8}
 
 /* responsive */
 @media(max-width:980px){
-  .pain-grid,.mentor-grid,.offer-grid,.faq-grid{grid-template-columns:1fr;gap:44px}
+  .pain-grid,.mentor-grid,.faq-grid{grid-template-columns:1fr;gap:44px}
+  .offer .stack{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr 1fr}
   .facts{grid-template-columns:1fr 1fr}
   .timeline{grid-template-columns:1fr}
@@ -509,7 +528,7 @@ footer img{height:22px;width:auto;opacity:.8}
       <span class="eyebrow">Escola de Líderes · PS Varejo</span>
       <h2>Já imaginou ter a oportunidade de <span class="kw" style="--k:0">aprender,</span> <span class="kw" style="--k:1">se atualizar</span> ou <span class="kw" style="--k:2">aprimorar</span> ainda mais seus conhecimentos?</h2>
     </div>
-    <div class="answer rv" style="--d:.9s">
+    <div class="answer rv" style="--d:.35s">
       <p class="ans-a">No curso <b>Escola de Líderes,</b> disponível na PS Varejo</p>
       <p class="ans-b">isso é possível.</p>
     </div>
@@ -565,11 +584,14 @@ footer img{height:22px;width:auto;opacity:.8}
                 <span class="ln" data-l><b>certificado</b> no final.</span>
               </p>
               <div class="cert" data-l="cert" aria-hidden="true">
-                <div class="cert-top"><img src="assets/icone-branco.png" alt=""><span>PS Varejo</span></div>
-                <small>Certificado de conclusão</small>
-                <strong>Escola de Líderes</strong>
-                <div class="cert-name">Seu nome aqui</div>
-                <div class="cert-foot"><span>Patrick Salomão</span><i></i></div>
+                <div class="cert-frame">
+                  <div class="cert-head"><img src="assets/icone-branco.png" alt=""><span>PS VAREJO</span></div>
+                  <div class="cert-title">Certificado</div>
+                  <div class="cert-sub">de conclusão</div>
+                  <div class="cert-prog">Escola de Líderes</div>
+                  <div class="cert-to">conferido a <em>Seu nome aqui</em></div>
+                  <div class="cert-foot"><div class="cert-sign"><span>Patrick Salomão</span><small>Mentor · PS Varejo</small></div><div class="cert-seal"><b>2027</b></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -695,10 +717,10 @@ footer img{height:22px;width:auto;opacity:.8}
         <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b><span class="badge">Bônus</span>Curso “Como engajar seu time”</b><p>Comece a aplicar antes mesmo do primeiro encontro.</p></div></div>
         <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b><span class="badge">Bônus</span>GPS · Guia de 20 passos motivacionais</b><p>O passo a passo para montar e motivar o seu time.</p></div></div>
       </div>
-      <div class="price rv" style="--d:.1s">
+      <div class="bridge rv"><i></i><span>E tudo isso por<small>condição exclusiva do Lote 1</small></span></div>
+      <div class="price rv">
         <div class="price-in">
-          <img class="logo-ic" src="assets/icone.png" alt="" width="256" height="256">
-          <div class="t">Escola de Líderes</div>
+          <div class="t"><img class="logo-ic" src="assets/icone.png" alt="" width="256" height="256">Escola de Líderes</div>
           <div class="s">Turma 2027 · início 15 de fevereiro</div>
           <div class="lote"><span class="lote-tag"><i></i>Lote 1</span><span>Preço de lançamento</span></div>
           <div class="plan-tabs" role="tablist" aria-label="Tipo de inscrição">
@@ -715,8 +737,8 @@ footer img{height:22px;width:auto;opacity:.8}
           <div class="plan" data-panel="dupla" hidden>
             <div class="duo-head"><b>Lidere em dupla</b>Traga um colega líder e paguem juntos</div>
             <div class="amount"><small>2 vagas por 10x de</small><span class="v"><sup>R$</sup>89,90</span></div>
-            <div class="pix">Só <b>R$ 44,95</b> por pessoa ao mês</div>
-            <div class="total">R$ 899,00 no total para 2 líderes (R$ 449,50 cada)</div>
+            <div class="pix"><span class="pix-chip">PIX</span>ou <b>R$ 809,10</b> à vista</div>
+            <div class="total">R$ 899,00 no cartão · só R$ 44,95 por pessoa ao mês</div>
             <a class="btn lg block" data-checkout-dupla href="#">Garantir as 2 vagas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
           <div class="secure">
@@ -767,7 +789,7 @@ footer img{height:22px;width:auto;opacity:.8}
       <details><summary>E se eu não puder participar ao vivo?<span class="pl"></span></summary><p>Sem problema. Você recebe acesso às gravações e pode assistir quando quiser.</p></details>
       <details><summary>Como funciona a mentoria individual?<span class="pl"></span></summary><p>Os 10 primeiros inscritos ganham uma sessão individual com o Patrick para olhar de perto os desafios da sua liderança e da sua loja.</p></details>
       <details><summary>Recebo certificado?<span class="pl"></span></summary><p>Sim. Ao concluir a jornada, você recebe o certificado da Escola de Líderes PS Varejo.</p></details>
-      <details><summary>Quais as formas de pagamento?<span class="pl"></span></summary><p>Cartão de crédito em até 10x de R$ 69,79 ou R$ 627,90 à vista no Pix. Inscrevendo em dupla, as 2 vagas saem por 10x de R$ 89,90. O pagamento é processado em ambiente seguro.</p></details>
+      <details><summary>Quais as formas de pagamento?<span class="pl"></span></summary><p>Cartão de crédito em até 10x de R$ 69,79 ou R$ 627,90 à vista no Pix. Inscrevendo em dupla, as 2 vagas saem por 10x de R$ 89,90 ou R$ 809,10 à vista no Pix. O pagamento é processado em ambiente seguro.</p></details>
       <details><summary>Tenho garantia?<span class="pl"></span></summary><p>Sim. Você tem 7 dias de garantia incondicional. Se não gostar, devolvemos 100% do valor pago.</p></details>
       <details><summary>Minha empresa pode inscrever vários líderes?<span class="pl"></span></summary><p>Pode e é o ideal. Fale com a nossa equipe pelo WhatsApp para receber as condições especiais para empresas.</p></details>
     </div>
@@ -871,7 +893,7 @@ tl.insertAdjacentHTML('beforeend', `<div class="step xmas rv"><span class="m">�
   const add = (sel, cls) => document.querySelectorAll(sel).forEach(el => { el.classList.add('rv', cls); });
   add('.mentor-photo', 'rv-clip');
   add('.offer .stack', 'rv-l');
-  add('.offer .price', 'rv-r');
+  add('.offer .price', 'rv-zoom');
   add('.company-box', 'rv-zoom');
   add('.chance', 'rv-zoom');
   // grupos: filhos entram um após o outro
@@ -967,11 +989,11 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
   function update(){
     raf = 0;
     const r = pin.getBoundingClientRect(), total = pin.offsetHeight - innerHeight;
-    const p = cl(-r.top / total);
+    const pRaw = -r.top / total, p = cl(pRaw);
     stage.style.setProperty('--p', p);
     const N = screens.length, sceneVis = new Map();
     screens.forEach((sc, i) => {
-      const a = i / N, b = (i + 1) / N, lt = (p - a) / (b - a);
+      const a = i / N, b = (i + 1) / N, lt = ((i === 0 ? pRaw : p) - a) / (b - a);
       const vin = i === 0 ? 1 : sstep(a - .02, a + .02, p);
       const vout = i === N - 1 ? 1 : 1 - sstep(b - .02, b + .02, p);
       const vis = vin * vout;
@@ -980,7 +1002,7 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
       const n = sc.items.length;
       const inStep = n > 1 ? (IN_B - IN_A - DUR_IN) / (n - 1) : 0;
       const outStep = n > 1 ? (OUT_B - HOLD_END - DUR_OUT) / (n - 1) : 0;
-      const inA = i === 0 ? -.03 : IN_A;
+      const inA = i === 0 ? -(.45 * innerHeight / total) * N : IN_A; // a 1ª cena começa a entrar antes da tela fixar
       sc.items.forEach((el, j) => {
         const kin = ease(cl((lt - inA - j * inStep) / DUR_IN));
         const kout = i === N - 1 ? 0 : ease(cl((lt - HOLD_END - j * outStep) / DUR_OUT));
