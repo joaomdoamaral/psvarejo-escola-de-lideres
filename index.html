@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escola de Líderes · PS Varejo</title>
+<meta name="description" content="Escola de Líderes com Patrick Salomão: 12 encontros ao vivo para líderes do varejo saírem com método, rotina e ferramentas prontas para uma gestão sem improviso. Início 15/02.">
+<meta name="theme-color" content="#04050b">
+<meta property="og:title" content="Escola de Líderes · PS Varejo">
+<meta property="og:description" content="Sua próxima evolução como líder começa aqui. 12 encontros ao vivo com Patrick Salomão. Início 15/02.">
+<meta property="og:image" content="assets/hero.webp">
+<link rel="icon" href="assets/icone.png">
+<link rel="preload" as="image" href="assets/hero.webp" media="(min-width: 761px)">
+<link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width: 760px)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#04050b; --bg2:#080b17; --bg3:#0d1124;
+  --navy:#27295f; --blue:#2b7fff; --blue2:#6fb2ff; --cyan:#9fd4ff;
+  --warm:#ff5b2e;
+  --ink:#f3f5ff; --muted:#9aa3c2; --dim:#6b7391;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --glass:rgba(14,18,38,.55);
+  --r:22px;
+  --display:'Sora',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;letter-spacing:-.03em;font-weight:800}
+h2{font-size:clamp(34px,5vw,60px)}
+.grad{background:linear-gradient(100deg,#d8ecff 0%,var(--blue2) 45%,var(--blue) 100%);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue2)}
+.eyebrow::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--blue2))}
+.lead{color:var(--muted);font-size:clamp(17px,1.6vw,20px);max-width:620px}
+section{position:relative}
+.sec{padding:clamp(80px,11vw,140px) 0}
+
+/* grain overlay */
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+
+/* buttons */
+.btn{--h:62px;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;height:var(--h);padding:0 32px;border-radius:999px;
+  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.01em;color:#fff;cursor:pointer;border:0;isolation:isolate;
+  background:linear-gradient(180deg,#4a95ff,#1f63e6);box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 18px 50px -12px rgba(43,127,255,.75),0 0 80px -20px rgba(43,127,255,.9);
+  transition:transform .25s ease, box-shadow .25s ease;overflow:hidden;white-space:nowrap}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);animation:shine 3.6s ease-in-out infinite;z-index:-1}
+@keyframes shine{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 24px 60px -12px rgba(43,127,255,.9),0 0 110px -10px rgba(43,127,255,1)}
+.btn svg{width:18px;height:18px;transition:transform .25s}
+.btn:hover svg{transform:translateX(4px)}
+.btn.ghost{background:rgba(255,255,255,.04);box-shadow:0 0 0 1px var(--line2) inset}
+.btn.ghost::after{display:none}
+.btn.lg{--h:70px;font-size:18px;padding:0 40px}
+.btn.block{width:100%}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(4,5,11,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav img{height:26px;width:auto}
+.nav .btn{--h:44px;padding:0 22px;font-size:14px}
+.nav .pill{display:none;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:#35e08a;box-shadow:0 0 0 0 rgba(53,224,138,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,224,138,.55)}70%{box-shadow:0 0 0 10px rgba(53,224,138,0)}100%{box-shadow:0 0 0 0 rgba(53,224,138,0)}}
+@media(min-width:900px){.nav .pill{display:flex}}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 56px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:115%;object-fit:cover;object-position:center 40%;transform:translateY(var(--py,0));filter:saturate(1.1) contrast(1.05)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 80% at 50% 10%,rgba(4,5,11,0),rgba(4,5,11,.6) 70%),
+  linear-gradient(180deg,rgba(4,5,11,.6) 0%,rgba(4,5,11,.15) 28%,rgba(4,5,11,.8) 62%,var(--bg) 100%),
+  linear-gradient(90deg,rgba(255,91,46,.18) 0%,transparent 18%)}
+.flare{position:absolute;z-index:-1;left:50%;top:38%;width:1400px;height:2px;transform:translateX(-50%);pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(43,127,255,.2) 20%,rgba(159,212,255,.95) 50%,rgba(43,127,255,.2) 80%,transparent);filter:blur(.5px);animation:flare 6s ease-in-out infinite}
+.flare::before{content:"";position:absolute;left:50%;top:50%;width:420px;height:420px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(111,178,255,.55),rgba(43,127,255,.18) 35%,transparent 65%)}
+.flare::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;box-shadow:0 0 30px 10px #bfe0ff,0 0 90px 30px rgba(43,127,255,.8)}
+@keyframes flare{0%,100%{opacity:.75;transform:translateX(-50%) scaleX(1)}50%{opacity:1;transform:translateX(-50%) scaleX(1.12)}}
+.hero h1{font-size:clamp(40px,5.6vw,84px);max-width:none;margin:22px 0 24px}
+.hero h1.big{font-size:clamp(58px,9.5vw,148px);letter-spacing:-.045em;line-height:.95}
+.hero h1 .l2{display:block}
+.hero .lead{max-width:640px;color:#c3cae2}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:36px}
+.price-hint{font-size:14px;color:var(--muted);line-height:1.35}
+.price-hint b{display:block;color:#fff;font-family:var(--display);font-size:20px}
+.scroll-cue{display:flex;width:fit-content;flex-direction:column;align-items:center;gap:14px;margin:44px auto 0;font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#dfe7ff}.scroll-cue span{display:flex;align-items:center;gap:14px}.scroll-cue span::after{margin-left:-.32em}.scroll-cue span::before,.scroll-cue span::after{content:"";width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--blue2))}.scroll-cue span::after{transform:scaleX(-1)}.cue-track{position:relative;display:block;width:2px;height:84px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden}.cue-track b{position:absolute;left:0;top:-40%;width:100%;height:40%;border-radius:2px;background:linear-gradient(180deg,transparent,var(--cyan));box-shadow:0 0 12px var(--blue);animation:cue 1.8s cubic-bezier(.6,0,.4,1) infinite}@keyframes cue{to{top:110%}}.scroll-cue svg{width:42px;height:42px;margin-top:-8px;color:var(--cyan);animation:cuebob 1.8s ease-in-out infinite}@keyframes cuebob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(6px);opacity:1}}.scroll-cue:hover{color:#fff}
+/* story (texto do Patrick em blocos) */
+.story{padding:clamp(90px,11vw,150px) 0;overflow:hidden;background:radial-gradient(60% 40% at 15% 0%,rgba(43,127,255,.14),transparent 70%),var(--bg)}
+.story-orb{position:absolute;width:760px;height:760px;right:-280px;top:30%;border-radius:50%;background:radial-gradient(circle,rgba(43,127,255,.25),transparent 65%);pointer-events:none}
+.sq h2{font-size:clamp(32px,4.8vw,64px);line-height:1.08;max-width:1000px;margin-top:20px}
+.kw{position:relative;display:inline-block;color:#fff;isolation:isolate}
+.kw::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.14em;border-radius:4px;background:linear-gradient(90deg,var(--cyan),var(--blue));transform:scaleX(0);transform-origin:left;z-index:-1;opacity:.9}
+.sq.in .kw::after{animation:kw 1s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.5s + var(--k)*.35s)}
+.sq.in .kw{animation:kwc 1s ease forwards;animation-delay:calc(.5s + var(--k)*.35s)}
+@keyframes kw{to{transform:scaleX(1)}}
+@keyframes kwc{to{color:var(--cyan);text-shadow:0 0 30px rgba(111,178,255,.5)}}
+.answer{position:relative;margin-top:44px;padding:6px 0 6px clamp(22px,3vw,36px)}
+.answer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px;background:linear-gradient(180deg,var(--cyan),var(--blue) 60%,transparent);box-shadow:0 0 20px rgba(43,127,255,.8)}
+.ans-a{font-size:clamp(19px,2vw,26px);color:var(--muted);line-height:1.35}
+.ans-a b{color:#fff;font-weight:600}
+.ans-b{font-family:var(--display);font-weight:800;font-size:clamp(46px,7vw,96px);line-height:1;letter-spacing:-.045em;margin-top:6px;background:linear-gradient(95deg,#fff 0%,var(--cyan) 40%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(43,127,255,.35))}
+/* pin: cenas no scroll */
+.story{overflow:clip}
+.pin{position:relative;height:800vh;margin:72px 0 24px}
+.pin-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
+.pin-bg{position:absolute;inset:0}
+.pin-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 30%;opacity:0;filter:brightness(.48) saturate(1.15);will-change:opacity,transform}
+.pin-bg img:first-child{opacity:1}
+.pin-shade{position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.15) 18%,rgba(4,5,11,.2) 70%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.9) 0%,rgba(4,5,11,.55) 55%,rgba(4,5,11,.2) 100%)}
+.pin-glow{position:absolute;width:900px;height:900px;left:var(--gx,60%);top:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(43,127,255,.35),transparent 62%);opacity:var(--go,.4);pointer-events:none}
+.pin-bar{position:absolute;left:0;right:0;top:0;height:3px;background:rgba(255,255,255,.06);z-index:3}
+.pin-bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:linear-gradient(90deg,var(--cyan),var(--blue));box-shadow:0 0 14px var(--blue)}
+.pin-steps{position:absolute;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);list-style:none;display:grid;gap:18px;z-index:3;counter-reset:st}
+.pin-steps li{counter-increment:st;display:flex;align-items:center;justify-content:flex-end;gap:12px;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);transition:color .4s}
+.pin-steps li::after{content:counter(st,decimal-leading-zero);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.15);font-size:11px;letter-spacing:0;transition:all .4s}
+.pin-steps li.on{color:#fff}
+.pin-steps li.on::after{background:var(--blue);border-color:var(--blue2);box-shadow:0 0 20px rgba(43,127,255,.8)}
+.scene{position:absolute;inset:0;display:flex;align-items:center;z-index:2;pointer-events:none}
+.pin:not(.static) [data-l]{opacity:0;will-change:opacity,transform,filter}
+.ln{display:block}
+.scene .wrap{padding-right:clamp(24px,16vw,230px)}
+.s-tag{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);margin-bottom:20px}
+.live{width:8px;height:8px;border-radius:50%;background:var(--blue2);animation:pulse 1.8s infinite}
+.s-text{font-family:var(--display);font-weight:600;font-size:clamp(28px,3.6vw,52px);line-height:1.14;letter-spacing:-.03em;color:#e4e9f8;max-width:860px}
+.s-text b{color:#fff;font-weight:800}
+.s-text .hl{color:var(--cyan)}
+.brandfly{list-style:none;display:flex;flex-wrap:wrap;gap:6px 34px;margin-top:40px;max-width:900px}
+.brandfly li{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.6vw,68px);line-height:1.05;letter-spacing:-.04em;color:#fff;}
+.brandfly li.o{color:transparent;-webkit-text-stroke:1.5px var(--cyan)}
+.s2-grid{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:clamp(24px,4vw,64px)}
+.s2-num{display:flex;align-items:flex-start}
+.s2-tag{grid-column:1/-1;margin-bottom:-10px}
+.s2-num .plus{font-size:clamp(75px,9vw,140px);margin-top:.12em;margin-right:.02em;letter-spacing:0}
+#yrs{min-width:1.12em}
+.s2-line{display:block;white-space:nowrap;will-change:opacity,transform,filter}
+.s2-tag,.s2-anos{will-change:opacity,transform,filter}
+.s2-num span{display:block;font-family:var(--display);font-weight:800;font-size:clamp(150px,18vw,280px);line-height:.8;letter-spacing:-.08em;background:linear-gradient(180deg,#fff 15%,#6fb2ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;filter:drop-shadow(0 20px 60px rgba(43,127,255,.5))}
+.s2-anos{display:block;font-family:var(--display);font-size:clamp(44px,5vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:18px}
+.s2-copy .s-text{font-size:clamp(21px,2.3vw,34px)}
+.best{display:block;font-family:var(--display);font-weight:800;font-size:clamp(64px,10vw,150px);line-height:.92;letter-spacing:-.05em;background:linear-gradient(95deg,#fff 10%,var(--cyan) 50%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;transform:translateX(var(--bx,0))}
+.s3-text{margin-top:26px;font-size:clamp(28px,4vw,58px)}
+.s3-line{display:block;will-change:opacity,transform,filter}
+.best{will-change:opacity,transform}
+.s4-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px}
+.cert{justify-self:center;width:min(100%,400px);aspect-ratio:1.45;border-radius:14px;padding:22px 26px;display:flex;flex-direction:column;background:linear-gradient(145deg,#f7f9ff,#dfe8fb);color:#1c2150;box-shadow:0 40px 100px -20px rgba(43,127,255,.7);position:relative;overflow:hidden;transform:perspective(900px) rotateY(var(--cry,0deg)) rotate(var(--crz,-3deg)) scale(var(--cs,1));will-change:transform}
+.cert::before{content:"";position:absolute;inset:8px;border:1px solid rgba(39,41,95,.25);border-radius:9px;pointer-events:none}
+.cert::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-20deg);animation:certshine 4.5s ease-in-out infinite}
+@keyframes certshine{0%,60%{left:-60%}100%{left:130%}}
+.cert-top{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:13px}
+.cert-top img{width:22px;height:22px;filter:brightness(0) saturate(100%) invert(14%) sepia(40%) saturate(2000%) hue-rotate(220deg)}
+.cert small{margin-top:auto;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#4a5291}
+.cert strong{font-family:var(--display);font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em;color:#27295f}
+.cert-name{font-family:var(--display);font-style:italic;font-size:14px;color:#2b7fff;margin-top:6px;padding-bottom:6px;border-bottom:1px solid rgba(39,41,95,.25)}
+.cert-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:10px;color:#4a5291}
+.cert-foot i{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,#ffd36b,#e0a11b);box-shadow:0 0 0 3px rgba(224,161,27,.25)}
+/* sem animação: cenas empilhadas */
+.pin.static{height:auto}
+.pin.static .pin-stage{position:relative;height:auto;padding:40px 0}
+.pin.static .scene{position:relative;opacity:1;padding:48px 0}
+.pin.static [data-l]{opacity:1}
+.pin.static .pin-bg img{opacity:0}
+.pin.static .pin-steps,.pin.static .pin-bar{display:none}
+.chance{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:clamp(28px,4vw,48px);border-radius:28px;border:1px solid rgba(111,178,255,.3);background:linear-gradient(135deg,rgba(43,127,255,.22),rgba(14,18,38,.6) 60%);box-shadow:0 40px 120px -40px rgba(43,127,255,.6)}
+.chance h2{font-size:clamp(40px,6vw,80px);text-transform:uppercase;letter-spacing:-.04em;line-height:.95}
+.chance p{font-size:clamp(17px,1.6vw,20px);color:#c9d2ee;margin-top:16px;max-width:520px}
+.chance-cta{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+@media(max-width:980px){
+  .pin-steps{display:none}
+  .scene .wrap{padding-right:24px}
+  .s2-grid{grid-template-columns:1fr;gap:8px}
+  .s4-grid{grid-template-columns:1fr;gap:36px}
+}
+@media(max-width:760px){
+  .pin{height:740vh;margin-top:56px}
+  .pin-shade{background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.55) 20%,rgba(4,5,11,.6) 75%,var(--bg) 100%)}
+  .scene .wrap{padding-right:20px}
+  .brandfly{gap:2px 20px;margin-top:28px}
+  .s2-num span{font-size:52vw}
+  .s2-num .plus{font-size:26vw}
+  .cert{width:min(100%,300px)}
+  .chance-cta,.chance-cta .btn{width:100%}
+}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border:1px solid var(--line2);border-radius:var(--r);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden}
+.hero-meta > div{padding:20px 24px;border-left:1px solid var(--line)}
+.hero-meta > div:first-child{border-left:0}
+.hero-meta small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.hero-meta strong{font-family:var(--display);font-size:20px;font-weight:700}
+.cd{display:flex;gap:10px;font-family:var(--display);font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.cd span{display:flex;align-items:baseline;gap:2px}
+.cd i{font-style:normal;font-size:11px;color:var(--dim);font-weight:600}
+
+/* marquee */
+.brands{border-block:1px solid var(--line);padding:28px 0;background:var(--bg2);overflow:hidden}
+.brands p{text-align:center;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
+.track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.track span{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,30px);color:rgba(255,255,255,.38);padding:0 34px;letter-spacing:-.01em;white-space:nowrap;display:flex;align-items:center;gap:34px}
+.track span::after{content:"✦";font-size:12px;color:var(--blue)}
+@keyframes marq{to{transform:translateX(-50%)}}
+.brands:hover .track{animation-play-state:paused}
+
+/* deliverables */
+.deliv{background:radial-gradient(70% 60% at 50% 0%,rgba(43,127,255,.16),transparent 70%),var(--bg)}
+.center{text-align:center}
+.center .lead{margin:20px auto 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
+.card{--mx:50%;--my:0%;position:relative;padding:32px 28px 30px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--line);overflow:hidden;transition:transform .35s,border-color .35s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(43,127,255,.22),transparent 45%);opacity:0;transition:opacity .35s}
+.card:hover{transform:translateY(-6px);border-color:rgba(111,178,255,.35)}
+.card:hover::before{opacity:1}
+.card > *{position:relative}
+.card .ic{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(111,178,255,.25),rgba(43,127,255,.06));border:1px solid rgba(111,178,255,.3);margin-bottom:22px}
+.card .ic svg{width:24px;height:24px;stroke:var(--cyan)}
+.card h3{font-size:21px;letter-spacing:-.02em;margin-bottom:10px;font-weight:700}
+.card p{color:var(--muted);font-size:15.5px}
+.card .num{position:absolute;top:22px;right:24px;font-family:var(--display);font-size:13px;color:var(--dim);font-weight:600}
+
+/* journey */
+.journey-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.journey-head h2{max-width:640px;margin-top:18px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:56px}
+.fact{background:var(--bg2);padding:28px 26px}
+.fact b{display:block;font-family:var(--display);font-size:clamp(34px,4vw,48px);line-height:1;letter-spacing:-.04em;margin-bottom:10px}
+.fact span{color:var(--muted);font-size:15px}
+.timeline{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px}
+.step{display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:baseline;padding:22px 4px;border-bottom:1px solid var(--line);transition:background .3s}
+.step:hover{background:linear-gradient(90deg,rgba(43,127,255,.08),transparent)}
+.step .m{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2)}
+.step h3{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.3}
+.step p{color:var(--dim);font-size:14.5px;margin-top:4px}
+.step.xmas{grid-column:1/-1;margin-top:18px;border:1px solid rgba(255,91,46,.35);border-radius:18px;padding:24px 22px;background:linear-gradient(90deg,rgba(255,91,46,.12),rgba(255,91,46,.02))}
+.step.xmas .m{color:#ff8a66}
+
+/* mentor */
+.mentor{background:var(--bg2);overflow:hidden}
+.mentor-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+.mentor-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line2)}
+.mentor-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.mentor-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(4,5,11,.9))}
+.mentor-photo .tag{position:absolute;left:20px;bottom:20px;z-index:2;font-family:var(--display);font-weight:700;font-size:22px;line-height:1.15}
+.mentor-photo .tag small{display:block;font-family:var(--body);font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.06em;margin-top:4px}
+.mentor-glow{position:absolute;width:520px;height:520px;left:-120px;top:10%;background:radial-gradient(circle,rgba(43,127,255,.35),transparent 65%);filter:blur(10px);pointer-events:none}
+.mentor h2{margin:18px 0 24px}
+.mentor .bio{color:#c9cfe6;font-size:17px;display:grid;gap:16px}
+.mentor .bio strong{color:#fff}
+.creds{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.creds span{font-size:13.5px;padding:9px 15px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.03);color:#dfe4f5}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.stats div{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--bg3)}
+.stats b{display:block;font-family:var(--display);font-size:34px;letter-spacing:-.04em;line-height:1}
+.stats span{font-size:13.5px;color:var(--muted)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:260px 260px;gap:14px;margin-top:56px}
+.gallery figure{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+.gallery figure:first-child{grid-row:1/3}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s;filter:saturate(.9)}
+.gallery figure:hover img{transform:scale(1.06);filter:saturate(1.1)}
+.gallery figcaption{position:absolute;left:16px;bottom:14px;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(4,5,11,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* offer */
+.offer{background:radial-gradient(60% 50% at 50% 30%,rgba(43,127,255,.22),transparent 70%),var(--bg)}
+.offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin-top:64px;align-items:stretch}
+.stack{border:1px solid var(--line2);border-radius:28px;background:var(--bg2);padding:36px}
+.stack h3{font-size:14px;font-family:var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);font-weight:600;margin-bottom:12px}
+.si{display:flex;gap:16px;padding:18px 0;border-bottom:1px dashed var(--line2)}
+.si:last-child{border-bottom:0}
+.si .chk{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--blue);margin-top:2px}
+.si .chk svg{width:14px;height:14px;stroke:#fff}
+.si b{font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:-.01em;display:block}
+.si p{color:var(--muted);font-size:14.5px;margin-top:2px}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:6px;background:rgba(43,127,255,.16);color:var(--blue2);margin-right:8px;vertical-align:2px;font-family:var(--body)}
+.badge.hot{background:rgba(255,91,46,.16);color:#ff8a66}
+.vagas{display:flex;gap:6px;margin-top:10px}
+.vagas i{width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--warm),#ff9a3e)}
+
+.price{position:relative;border-radius:28px;padding:2px;background:linear-gradient(160deg,rgba(159,212,255,.9),rgba(43,127,255,.35) 40%,rgba(255,255,255,.06) 70%,rgba(43,127,255,.5));box-shadow:0 40px 120px -30px rgba(43,127,255,.6)}
+.price-in{height:100%;border-radius:26px;background:linear-gradient(180deg,#0d1430,#070a16 60%);padding:40px 34px;display:flex;flex-direction:column;text-align:center;overflow:hidden;position:relative}
+.price-in::before{content:"";position:absolute;top:-180px;left:50%;width:420px;height:420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(43,127,255,.45),transparent 65%)}
+.price-in > *{position:relative}
+.price .logo-ic{width:54px;height:auto;margin:0 auto 18px}
+.price .t{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.02em}
+.price .s{color:var(--muted);font-size:14.5px;margin-top:4px}
+.amount{margin:30px 0 6px;font-family:var(--display);line-height:1}
+.amount small{display:block;font-size:15px;color:var(--muted);font-weight:600;margin-bottom:8px;font-family:var(--body)}
+.amount .v{font-size:clamp(64px,8vw,86px);font-weight:800;letter-spacing:-.05em;background:linear-gradient(180deg,#fff,#a9cfff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.amount .v sup{font-size:.38em;vertical-align:.95em;margin-right:4px;letter-spacing:0}
+.total{color:var(--muted);font-size:14.5px;margin-bottom:28px}
+.secure{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin-top:20px;font-size:13px;color:var(--dim)}
+.secure span{display:flex;align-items:center;gap:6px}
+.secure svg{width:15px;height:15px;stroke:currentColor}
+.guarantee{display:flex;gap:16px;align-items:center;text-align:left;margin-top:26px;padding:18px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.guarantee .seal{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;border:1.5px dashed var(--blue2);font-family:var(--display);font-weight:800;font-size:20px;color:var(--blue2);line-height:1}
+.guarantee .seal small{display:block;font-size:8px;letter-spacing:.1em}
+.guarantee p{font-size:13.5px;color:var(--muted)}
+.guarantee b{color:#fff}
+.lote{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;font-size:13px;color:var(--muted)}
+.lote-tag{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,var(--warm),#ff9a3e);box-shadow:0 0 0 0 rgba(255,91,46,.5);animation:lote 2.2s infinite}
+.lote-tag i{width:7px;height:7px;border-radius:50%;background:#fff}
+@keyframes lote{0%{box-shadow:0 0 0 0 rgba(255,91,46,.55)}70%{box-shadow:0 0 0 12px rgba(255,91,46,0)}100%{box-shadow:0 0 0 0 rgba(255,91,46,0)}}
+.plan-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;margin:22px 0 4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line2)}
+.plan-tabs button{position:relative;z-index:1;height:42px;border:0;background:none;color:var(--muted);font-family:var(--display);font-weight:700;font-size:14.5px;cursor:pointer;border-radius:999px;transition:color .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.plan-tabs button.on{color:#fff}
+.plan-tabs em{font-style:normal;font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;background:rgba(53,224,138,.18);color:#5ff0a8}
+.plan-ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(180deg,#4a95ff,#1f63e6);box-shadow:0 8px 24px -8px rgba(43,127,255,.9);transition:transform .45s cubic-bezier(.2,.9,.2,1)}
+.plan-tabs.duo .plan-ind{transform:translateX(100%)}
+.plan{animation:planin .5s cubic-bezier(.2,.9,.2,1)}
+@keyframes planin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pix{display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;color:#d6dcf2;margin-top:4px}
+.pix b{color:#fff;font-family:var(--display);font-size:19px}
+.pix-chip{font-size:10.5px;font-weight:800;letter-spacing:.1em;padding:4px 8px;border-radius:6px;background:rgba(50,188,173,.18);color:#4fe0cf;border:1px solid rgba(79,224,207,.35)}
+.price .total{margin:6px 0 24px;font-size:13.5px}
+.duo-head{margin-top:20px;padding:12px 14px;border-radius:14px;background:rgba(53,224,138,.08);border:1px dashed rgba(95,240,168,.4);font-size:13.5px;color:#c9f5dd;line-height:1.35}
+.duo-head b{display:block;font-family:var(--display);font-size:16px;color:#fff}
+
+/* company */
+.company{padding:0 0 clamp(80px,11vw,140px)}
+.company-box{position:relative;border-radius:32px;overflow:hidden;border:1px solid var(--line2);display:grid;grid-template-columns:1.1fr 1fr;min-height:420px}
+.company-box .txt{padding:clamp(32px,5vw,64px);position:relative;z-index:2;background:linear-gradient(90deg,var(--bg3) 60%,transparent)}
+.company-box h2{font-size:clamp(30px,3.8vw,46px);margin:16px 0 18px}
+.company-box ul{list-style:none;display:grid;gap:10px;margin:24px 0 32px;color:#d0d6ec;font-size:16px}
+.company-box li{display:flex;gap:12px}
+.company-box li::before{content:"→";color:var(--blue2);font-weight:700}
+.company-box .img{position:relative}
+.company-box .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.company-box .img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg3),transparent 45%)}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+.faq h2{margin-top:18px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary .pl{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;transition:transform .35s,background .35s}
+summary .pl::before{content:"+";font-size:20px;font-weight:400;color:var(--blue2)}
+details[open] summary .pl{transform:rotate(45deg);background:rgba(43,127,255,.15)}
+details p{color:var(--muted);padding:0 50px 24px 0;font-size:16px}
+
+/* final */
+.final{min-height:88vh;display:flex;align-items:center;overflow:hidden;text-align:center}
+.final .bg{position:absolute;inset:0;z-index:-1}
+.final .bg img{width:100%;height:100%;object-fit:cover;object-position:30% center}
+.final .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 70% at 50% 50%,rgba(4,5,11,.72),rgba(4,5,11,.96)),linear-gradient(180deg,var(--bg),transparent 25%,transparent 75%,var(--bg))}
+.final h2{font-size:clamp(38px,6vw,84px);margin:20px auto 22px;max-width:900px}
+.final .lead{margin:0 auto 40px}
+
+footer{border-top:1px solid var(--line);padding:40px 0 120px;color:var(--dim);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer img{height:22px;width:auto;opacity:.8}
+
+/* card de perfil (aparece com o usuário parado) */
+.idle{position:fixed;right:24px;bottom:24px;z-index:80;width:min(400px,calc(100vw - 24px));display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:22px 22px 22px 20px;border-radius:24px;
+  background:linear-gradient(160deg,rgba(22,40,92,.92),rgba(8,11,23,.94) 60%);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(111,178,255,.35);box-shadow:0 30px 80px -20px rgba(0,0,0,.8),0 0 60px -10px rgba(43,127,255,.55);
+  opacity:0;visibility:hidden;transform:translateY(30px) scale(.94);transform-origin:bottom right;transition:opacity .45s ease,transform .6s cubic-bezier(.2,1.3,.3,1),visibility 0s .6s;overflow:hidden}
+.idle::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--ang,0deg),transparent 0 70%,rgba(159,212,255,.9) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 4s linear infinite;pointer-events:none}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ang{to{--ang:360deg}}
+.idle.on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .6s cubic-bezier(.2,1.3,.3,1),visibility 0s}
+.idle-x{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.05);color:var(--muted);font-size:12px;cursor:pointer;transition:background .2s,color .2s}
+.idle-x:hover{background:rgba(255,255,255,.12);color:#fff}
+.idle-ic{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;align-self:start;margin-top:4px;background:linear-gradient(160deg,rgba(111,178,255,.35),rgba(43,127,255,.08));border:1px solid rgba(159,212,255,.4);box-shadow:0 0 30px -6px rgba(43,127,255,.7);animation:icglow 2.6s ease-in-out infinite}
+.idle-ic svg{width:32px;height:32px;stroke:#fff}
+@keyframes icglow{0%,100%{box-shadow:0 0 24px -8px rgba(43,127,255,.6)}50%{box-shadow:0 0 40px -2px rgba(111,178,255,.95)}}
+.idle-eye{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue2);margin-bottom:8px;padding-right:30px}
+.idle h3{font-size:24px;line-height:1.08;letter-spacing:-.03em;font-weight:800}
+.idle p{font-size:14px;line-height:1.5;color:#c3cbe6;margin:10px 0 16px}
+.idle-cta{--h:46px;padding:0 16px;font-size:14px;width:100%;white-space:normal;text-align:center;line-height:1.2}
+@media(max-width:760px){
+  .idle{left:12px;right:12px;width:auto;bottom:calc(86px + env(safe-area-inset-bottom));grid-template-columns:52px minmax(0,1fr);gap:14px;padding:18px 16px 18px 16px;transform-origin:bottom center}
+  .idle-ic{width:52px;height:52px;border-radius:15px}
+  .idle-ic svg{width:26px;height:26px}
+  .idle h3{font-size:21px}
+  .idle p{font-size:13.5px}
+}
+/* sticky mobile cta */
+.sticky{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:20px;background:rgba(10,14,30,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line2);transform:translateY(140%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.sticky.on{transform:none}
+.sticky .p{font-size:12px;color:var(--muted);line-height:1.25}
+.sticky .p b{display:block;font-family:var(--display);color:#fff;font-size:17px}
+.sticky .btn{--h:50px;padding:0 20px;font-size:15px}
+
+/* reveal: entradas dinâmicas */
+.rv{opacity:0;transform:translate3d(0,48px,0) scale(.97);filter:blur(10px);transition:opacity .9s ease,transform 1.2s cubic-bezier(.16,1,.3,1),filter .9s ease,clip-path 1.2s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv.rv-l:not(.in){transform:translate3d(-70px,0,0)}
+.rv.rv-r:not(.in){transform:translate3d(70px,0,0)}
+.rv.rv-zoom:not(.in){transform:scale(.86)}
+.rv.rv-mask{filter:none}
+.rv.rv-mask:not(.in){transform:translate3d(0,60px,0)}
+.rv.rv-mask.in{animation:maskin 1.2s cubic-bezier(.16,1,.3,1) var(--d,0s) backwards}
+@keyframes maskin{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.rv.rv-clip{filter:none;clip-path:inset(12% 12% 12% 12% round 28px)}
+.rv.rv-clip:not(.in){transform:scale(1.04)}
+.rv.rv-clip.in{clip-path:inset(0 0 0 0 round 28px)}
+.hero .rv{transition-duration:1.1s,1.4s,1.1s,1.4s}
+.btn.mag{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .25s ease}
+
+/* responsive */
+@media(max-width:980px){
+  .pain-grid,.mentor-grid,.offer-grid,.faq-grid{grid-template-columns:1fr;gap:44px}
+  .cards{grid-template-columns:1fr 1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .timeline{grid-template-columns:1fr}
+  .company-box{grid-template-columns:1fr}
+  .company-box .img{height:260px;order:-1}
+  .company-box .img::after{background:linear-gradient(0deg,var(--bg3),transparent 60%)}
+  .company-box .txt{background:var(--bg3)}
+  .mentor-photo{max-width:520px}
+}
+@media(max-width:760px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .hero{padding:120px 0 36px}
+  .hero-bg img{object-position:60% 30%}
+  .hero-meta{grid-template-columns:1fr 1fr;margin-top:40px}
+  .hero-meta > div{padding:16px 18px;border-left:0;border-top:1px solid var(--line)}
+  .hero-meta > div:nth-child(-n+2){border-top:0}
+  .hero-meta > div:nth-child(even){border-left:1px solid var(--line)}
+  .hero-meta strong,.cd{font-size:17px}
+  .hero-cta .btn{width:100%}
+  .cards{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .stats div{padding:14px}
+  .stats b{font-size:26px}
+  .stats span{font-size:12px}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 160px 160px}
+  .gallery figure:first-child{grid-column:1/3;grid-row:auto}
+  .stack{padding:26px 22px}
+  .price-in{padding:34px 22px}
+  .step{grid-template-columns:64px 1fr;gap:12px}
+  details p{padding-right:0}
+  .sticky{display:flex}
+  .flare{top:30%}
+  .nav .btn{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" aria-label="PS Varejo"><img src="assets/logo-branco.png" alt="PS Varejo" width="600" height="98"></a>
+    <div class="pill"><span class="dot"></span> Inscrições abertas · Turma 2027</div>
+    <a class="btn" href="#oferta">Garantir vaga</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <picture>
+      <source media="(max-width: 760px)" srcset="assets/hero-mobile.webp">
+      <img id="heroImg" src="assets/hero.webp" alt="Patrick Salomão palestrando para uma plateia de líderes" fetchpriority="high" width="2000" height="1333">
+    </picture>
+  </div>
+  <div class="flare" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow rv">Escola de Líderes · com Patrick Salomão</span>
+    <h1 class="rv" style="--d:.08s">Sua próxima evolução<span class="l2 grad">como líder começa aqui.</span></h1>
+    <p class="lead rv" style="--d:.16s">Prepare-se para liderar pessoas, tomar decisões melhores e alcançar resultados mais consistentes no varejo.</p>
+    <a class="scroll-cue rv" href="#story" style="--d:.24s" aria-label="Conheça: role para baixo"><span>Conheça</span><i class="cue-track"><b></b></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+    <div class="hero-meta rv" style="--d:.32s">
+      <div><small>Início</small><strong>15 de fevereiro</strong></div>
+      <div><small>Formato</small><strong>12 encontros ao vivo</strong></div>
+      <div><small>Bônus</small><strong>Mentoria 1:1 · 10 vagas</strong></div>
+      <div><small>Começa em</small><div class="cd" id="cd"><span><b data-u="d">--</b><i>d</i></span><span><b data-u="h">--</b><i>h</i></span><span><b data-u="m">--</b><i>m</i></span><span><b data-u="s">--</b><i>s</i></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY (texto do Patrick, na íntegra, em blocos) -->
+<section class="story" id="story">
+  <div class="story-orb" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sq rv">
+      <span class="eyebrow">Escola de Líderes · PS Varejo</span>
+      <h2>Já imaginou ter a oportunidade de <span class="kw" style="--k:0">aprender,</span> <span class="kw" style="--k:1">se atualizar</span> ou <span class="kw" style="--k:2">aprimorar</span> ainda mais seus conhecimentos?</h2>
+    </div>
+    <div class="answer rv">
+      <p class="ans-a">No curso <b>Escola de Líderes,</b> disponível na PS Varejo</p>
+      <p class="ans-b">isso é possível.</p>
+    </div>
+
+  </div>
+
+  <!-- PIN: cenas que entram conforme o scroll -->
+  <div class="pin" id="pin">
+    <div class="pin-stage">
+      <!-- fundos das cenas: troque as imagens em assets/pin-scroll/1.webp ... 4.webp -->
+      <div class="pin-bg" aria-hidden="true">
+        <img src="assets/pin-scroll/1.webp" alt="" loading="lazy">
+        <img src="assets/pin-scroll/2.webp" alt="" loading="lazy">
+        <img src="assets/pin-scroll/3.webp" alt="" loading="lazy">
+        <img src="assets/pin-scroll/4.webp" alt="" loading="lazy">
+      </div>
+      <div class="pin-shade" aria-hidden="true"></div>
+      <div class="pin-glow" aria-hidden="true"></div>
+      <div class="pin-bar" aria-hidden="true"><i></i></div>
+      <ol class="pin-steps" aria-hidden="true"><li>Experiência</li><li>+13 anos</li><li>Na prática</li><li>Certificado</li></ol>
+
+      <div class="scene s1">
+        <div class="wrap">
+          <span class="s-tag" data-l><i class="live"></i>Quem vai te ensinar</span>
+          <p class="s-text">
+<span class="ln" data-l>Afinal você vai estudar</span>            <span class="ln" data-l>com um profissional</span>            <span class="ln" data-l>que já atuou em</span>            <span class="ln" data-l><b>grandes marcas que são</b></span>            <span class="ln" data-l><b>referência no mercado.</b></span>
+          </p>
+          <ul class="brandfly" aria-label="Dudalina, Sunglass Hut, Billabong, adidas, Arezzo, Reserva">
+            <li data-l="x">Dudalina</li><li class="o" data-l="x">Sunglass Hut</li><li data-l="x">Billabong</li><li class="o" data-l="x">adidas</li><li data-l="x">Arezzo</li><li class="o" data-l="x">Reserva</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="scene s2">
+        <div class="wrap s2-grid">
+          <span class="s-tag s2-tag" data-l>Experiência</span>
+          <div class="s2-num" data-l="num"><span class="plus">+</span><span id="yrs">0</span></div>
+          <div class="s2-copy">
+            <strong class="s2-anos" data-l>anos</strong>
+            <p class="s-text">
+              <span class="ln s2-line" data-l>ajudando donos de loja</span>
+              <span class="ln s2-line" data-l>a venderem mais com uma</span>
+              <span class="ln s2-line" data-l><b class="hl">gestão sem improviso.</b></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene s3">
+        <div class="wrap">
+          <span class="best" data-l="xl">E o melhor:</span>
+          <p class="s-text s3-text">
+            <span class="ln" data-l>você pode</span>
+            <span class="ln" data-l><b>aplicar tudo no seu dia a dia,</b></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="scene s4">
+        <div class="wrap s4-grid">
+          <p class="s-text">
+            <span class="ln" data-l>além de receber um</span>
+            <span class="ln" data-l><b>certificado</b> no final.</span>
+          </p>
+          <div class="cert" data-l="cert" aria-hidden="true">
+            <div class="cert-top"><img src="assets/icone-branco.png" alt=""><span>PS Varejo</span></div>
+            <small>Certificado de conclusão</small>
+            <strong>Escola de Líderes</strong>
+            <div class="cert-name">Seu nome aqui</div>
+            <div class="cert-foot"><span>Patrick Salomão</span><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="chance rv">
+      <div>
+        <h2>Essa é a<br><span class="grad">sua chance!</span></h2>
+        <p>Inicie agora o curso Escola de Líderes e veja a evolução da sua carreira acontecer.</p>
+      </div>
+      <div class="chance-cta">
+        <a class="btn lg" href="#oferta">Iniciar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="price-hint">a partir de<b>10x de R$ 69,79</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands">
+  <p>Marcas na trajetória de Patrick Salomão e da PS Varejo</p>
+  <div class="track" aria-label="Dudalina, Sunglass Hut, Billabong, adidas, Reserva, Mormaii, Forum, Jorge Bischoff, Intimissimi, Lilica & Tigor, Moncloa, Bottero, Loungerie, Criamigos, Usaflex, Crefaz">
+    <span>Sunglass Hut</span><span>Billabong</span><span>adidas</span><span>Reserva</span><span>Mormaii</span><span>Dudalina</span><span>Forum</span><span>Jorge Bischoff</span><span>Intimissimi</span><span>Lilica &amp; Tigor</span><span>Moncloa</span><span>Bottero</span><span>Loungerie</span><span>Criamigos</span><span>Usaflex</span><span>Crefaz</span>
+    <span aria-hidden="true">Sunglass Hut</span><span aria-hidden="true">Billabong</span><span aria-hidden="true">adidas</span><span aria-hidden="true">Reserva</span><span aria-hidden="true">Mormaii</span><span aria-hidden="true">Dudalina</span><span aria-hidden="true">Forum</span><span aria-hidden="true">Jorge Bischoff</span><span aria-hidden="true">Intimissimi</span><span aria-hidden="true">Lilica &amp; Tigor</span><span aria-hidden="true">Moncloa</span><span aria-hidden="true">Bottero</span><span aria-hidden="true">Loungerie</span><span aria-hidden="true">Criamigos</span><span aria-hidden="true">Usaflex</span><span aria-hidden="true">Crefaz</span>
+  </div>
+</div>
+
+<!-- DELIVERABLES -->
+<section class="sec deliv">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow rv">O que você leva</span>
+      <h2 class="rv" style="margin-top:18px">Eleve o nível da sua gestão.<br><span class="grad">Lidere com excelência.</span></h2>
+      <p class="lead rv">Conheça práticas e estratégias fundamentais para aprimorar sua liderança, desenvolver pessoas e construir uma operação de varejo mais eficiente.</p>
+    </div>
+    <div class="cards">
+      <article class="card rv"><span class="num">01</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17.5" cy="9.5" r="2.4"/><path d="M16 14.3c2.8-.5 5 1.6 5 4.7"/></svg></div><h3>Mapa do seu time</h3><p>Perfil comportamental (DISC) e nível de maturidade de cada pessoa, para saber como liderar cada um.</p></article>
+      <article class="card rv" style="--d:.06s"><span class="num">02</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Painel de KPIs + plano de ação</h3><p>Como ler os números da loja, achar o gargalo e transformar isso em ação na semana.</p></article>
+      <article class="card rv" style="--d:.12s"><span class="num">03</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4M8 14l2 2 4-4"/></svg></div><h3>Rotina de liderança</h3><p>Rituais de reunião, feedback e acompanhamento que organizam a sua semana e dão clareza ao time.</p></article>
+      <article class="card rv"><span class="num">04</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg></div><h3>Onboarding e offboarding</h3><p>Roteiros para receber, integrar e desligar pessoas com segurança e respeito.</p></article>
+      <article class="card rv" style="--d:.06s"><span class="num">05</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/><path d="M17 3l4 0 0 4M21 3l-5 5"/></svg></div><h3>Engajamento e produtividade</h3><p>Regras práticas para engajar o time e organizar a sua agenda para o que realmente importa.</p></article>
+      <article class="card rv" style="--d:.12s"><span class="num">06</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 21V7M12 7c-2-4-6-4-6-1.5S12 7 12 7zM12 7c2-4 6-4 6-1.5S12 7 12 7z"/></svg></div><h3>Plano Natal de Ouro</h3><p>Como planejar e liderar a data mais importante do varejo, com tudo pronto antes de dezembro chegar.</p></article>
+    </div>
+    <div class="center rv" style="margin-top:56px"><a class="btn lg" href="#oferta">Quero essas ferramentas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="sec" id="jornada">
+  <div class="wrap">
+    <div class="journey-head">
+      <div>
+        <span class="eyebrow rv">A jornada</span>
+        <h2 class="rv">Um ano inteiro<br><span class="grad">evoluindo junto.</span></h2>
+      </div>
+      <p class="lead rv" style="max-width:420px">Um encontro por mês: tempo para aplicar no seu dia a dia e voltar com dúvidas reais. No fim, um encontro extra para o Natal.</p>
+    </div>
+    <div class="facts">
+      <div class="fact rv"><b class="grad" data-count="11">11</b><span>encontros mensais ao vivo</span></div>
+      <div class="fact rv" style="--d:.06s"><b class="grad" data-count="1" data-prefix="+">+1</b><span>encontro extra de Natal</span></div>
+      <div class="fact rv" style="--d:.12s"><b class="grad">15/02</b><span>início da turma</span></div>
+      <div class="fact rv" style="--d:.18s"><b class="grad" data-count="100" data-suffix="%">100%</b><span>focado no varejo</span></div>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- MENTOR -->
+<section class="sec mentor" id="mentor">
+  <div class="mentor-glow" aria-hidden="true"></div>
+  <div class="wrap mentor-grid">
+    <div class="mentor-photo rv">
+      <img src="assets/patrick-palco.webp" alt="Patrick Salomão no palco" loading="lazy" width="900" height="1350">
+      <div class="tag">Patrick Salomão<small>Fundador da PS Varejo</small></div>
+    </div>
+    <div>
+      <span class="eyebrow rv">Seu mentor</span>
+      <h2 class="rv">De vendedor a consultor das <span class="grad">maiores marcas do varejo.</span></h2>
+      <div class="bio rv">
+        <p><strong>Patrick Salomão</strong> atua há mais de 20 anos no varejo. Começou no balcão como vendedor, atuou em marcas referência no mercado, como <strong>Dudalina, Sunglass Hut e Billabong</strong>, e nos últimos 13 anos vem ajudando donos de loja a venderem mais com uma <strong>gestão sem improviso</strong>.</p>
+        <p>Fundador da PS Varejo, tem como propósito o desenvolvimento do capital humano. Mostra a <strong>realidade da loja</strong> com estratégias comerciais aplicáveis, de um jeito dinâmico, divertido e criativo.</p>
+      </div>
+      <div class="creds rv">
+        <span>Gestão Comercial · FGV</span><span>Educador Executivo · SBCoaching</span><span>Teólogo · FTSA</span><span>Treinador de Pessoas</span>
+      </div>
+      <div class="stats rv">
+        <div><b class="grad" data-count="20" data-suffix="+">20+</b><span>anos no varejo</span></div>
+        <div><b class="grad" data-count="13">13</b><span>anos ajudando donos de loja</span></div>
+        <div><b class="grad" data-count="14" data-suffix="+">14+</b><span>marcas atendidas</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="gallery">
+      <figure class="rv"><img src="assets/palco-crefaz.webp" alt="Patrick no palco em convenção" loading="lazy"><figcaption>Convenções de líderes</figcaption></figure>
+      <figure class="rv" style="--d:.06s"><img src="assets/dinamica.webp" alt="Dinâmica em grupo com equipes de loja" loading="lazy"><figcaption>Dinâmicas práticas</figcaption></figure>
+      <figure class="rv" style="--d:.12s"><img src="assets/convencao.webp" alt="Treinamento sobre maturidade do colaborador" loading="lazy"><figcaption>Maturidade do time</figcaption></figure>
+      <figure class="rv" style="--d:.18s"><img src="assets/convencao2.webp" alt="Patrick conduzindo treinamento" loading="lazy"><figcaption>Método aplicado</figcaption></figure>
+      <figure class="rv" style="--d:.24s"><img src="assets/hero.webp" alt="Plateia de líderes em evento" loading="lazy"><figcaption>Times inteiros</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="sec offer" id="oferta">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow rv">Sua vaga</span>
+      <h2 class="rv" style="margin-top:18px">Tudo o que você recebe<br><span class="grad">ao entrar hoje.</span></h2>
+    </div>
+    <div class="offer-grid">
+      <div class="stack rv">
+        <h3>Programa</h3>
+        <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>Escola de Líderes · 12 encontros ao vivo</b><p>11 encontros mensais + 1 encontro extra de Natal, a partir de 15/02.</p></div></div>
+        <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b>Certificado de conclusão</b><p>Comprove a sua evolução como líder ao final da jornada.</p></div></div>
+        <h3 style="margin-top:22px">Bônus</h3>
+        <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b><span class="badge hot">Só 10 vagas</span>Mentoria individual com o Patrick</b><p>Uma sessão 1:1 exclusiva para os 10 primeiros inscritos.</p><div class="vagas" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+        <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b><span class="badge">Bônus</span>Acesso às gravações</b><p>Perdeu um encontro ou quer rever? Assista quando quiser.</p></div></div>
+        <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b><span class="badge">Bônus</span>Curso “Como engajar seu time”</b><p>Comece a aplicar antes mesmo do primeiro encontro.</p></div></div>
+        <div class="si"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span><div><b><span class="badge">Bônus</span>GPS · Guia de 20 passos motivacionais</b><p>O passo a passo para montar e motivar o seu time.</p></div></div>
+      </div>
+      <div class="price rv" style="--d:.1s">
+        <div class="price-in">
+          <img class="logo-ic" src="assets/icone.png" alt="" width="256" height="256">
+          <div class="t">Escola de Líderes</div>
+          <div class="s">Turma 2027 · início 15 de fevereiro</div>
+          <div class="lote"><span class="lote-tag"><i></i>Lote 1</span><span>Preço de lançamento</span></div>
+          <div class="plan-tabs" role="tablist" aria-label="Tipo de inscrição">
+            <button type="button" role="tab" class="on" aria-selected="true" data-plan="solo">Individual</button>
+            <button type="button" role="tab" aria-selected="false" data-plan="dupla">Em dupla <em>-35%</em></button>
+            <span class="plan-ind" aria-hidden="true"></span>
+          </div>
+          <div class="plan" data-panel="solo">
+            <div class="amount"><small>10x de</small><span class="v"><sup>R$</sup>69,79</span></div>
+            <div class="pix"><span class="pix-chip">PIX</span>ou <b>R$ 627,90</b> à vista</div>
+            <div class="total">R$ 697,90 no cartão</div>
+            <a class="btn lg block" data-checkout href="#">Garantir minha vaga <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="plan" data-panel="dupla" hidden>
+            <div class="duo-head"><b>Lidere em dupla</b>Traga um colega líder e paguem juntos</div>
+            <div class="amount"><small>2 vagas por 10x de</small><span class="v"><sup>R$</sup>89,90</span></div>
+            <div class="pix">Só <b>R$ 44,95</b> por pessoa ao mês</div>
+            <div class="total">R$ 899,00 no total para 2 líderes (R$ 449,50 cada)</div>
+            <a class="btn lg block" data-checkout-dupla href="#">Garantir as 2 vagas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="secure">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Cartão ou Pix</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Acesso imediato aos bônus</span>
+          </div>
+          <div class="guarantee">
+            <div class="seal">7<small>DIAS</small></div>
+            <p><b>Garantia incondicional.</b> Se em 7 dias você sentir que não é pra você, devolvemos 100% do valor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company">
+  <div class="wrap">
+    <div class="company-box rv">
+      <div class="txt">
+        <span class="eyebrow">Para empresas</span>
+        <h2>Quer formar <span class="grad">todos os seus líderes?</span></h2>
+        <p class="lead" style="font-size:17px">Redes, franquias e lojas com mais de um gerente têm condições especiais para inscrever o time inteiro.</p>
+        <ul>
+          <li>Valores especiais por grupo de líderes</li>
+          <li>Linguagem e exemplos alinhados ao seu segmento</li>
+          <li>Todos os líderes falando a mesma língua de gestão</li>
+        </ul>
+        <a class="btn ghost" data-whats href="#">Falar com a equipe no WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="img"><img src="assets/dinamica.webp" alt="Treinamento com equipe de varejo" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow rv">Dúvidas</span>
+      <h2 class="rv">Perguntas<br><span class="grad">frequentes.</span></h2>
+    </div>
+    <div class="rv">
+      <details><summary>Para quem é a Escola de Líderes?<span class="pl"></span></summary><p>Para gerentes, subgerentes, supervisores, coordenadores e donos de loja. Também para quem está sendo preparado para assumir a primeira liderança no varejo.</p></details>
+      <details><summary>Como funcionam os encontros?<span class="pl"></span></summary><p>São encontros ao vivo e online, um por mês, a partir de 15 de fevereiro. São 11 encontros mensais e mais 1 encontro extra focado em estratégias de Natal.</p></details>
+      <details><summary>E se eu não puder participar ao vivo?<span class="pl"></span></summary><p>Sem problema. Você recebe acesso às gravações e pode assistir quando quiser.</p></details>
+      <details><summary>Como funciona a mentoria individual?<span class="pl"></span></summary><p>Os 10 primeiros inscritos ganham uma sessão individual com o Patrick para olhar de perto os desafios da sua liderança e da sua loja.</p></details>
+      <details><summary>Recebo certificado?<span class="pl"></span></summary><p>Sim. Ao concluir a jornada, você recebe o certificado da Escola de Líderes PS Varejo.</p></details>
+      <details><summary>Quais as formas de pagamento?<span class="pl"></span></summary><p>Cartão de crédito em até 10x de R$ 69,79 ou R$ 627,90 à vista no Pix. Inscrevendo em dupla, as 2 vagas saem por 10x de R$ 89,90. O pagamento é processado em ambiente seguro.</p></details>
+      <details><summary>Tenho garantia?<span class="pl"></span></summary><p>Sim. Você tem 7 dias de garantia incondicional. Se não gostar, devolvemos 100% do valor pago.</p></details>
+      <details><summary>Minha empresa pode inscrever vários líderes?<span class="pl"></span></summary><p>Pode e é o ideal. Fale com a nossa equipe pelo WhatsApp para receber as condições especiais para empresas.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="bg"><img src="assets/palco-crefaz.webp" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <span class="eyebrow rv">A próxima turma começa em 15/02</span>
+    <h2 class="rv">Vamos juntos<br><span class="grad">transformar o varejo?</span></h2>
+    <p class="lead rv">As 10 mentorias individuais vão para quem chegar primeiro.</p>
+    <div class="rv"><a class="btn lg" data-checkout href="#">Quero entrar na Escola de Líderes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-branco.png" alt="PS Varejo" width="600" height="98">
+    <span>@psvarejo · liderança &amp; varejo</span>
+    <span>© 2026 PS Varejo. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<aside class="idle" id="idle" role="dialog" aria-labelledby="idleTitle" aria-hidden="true">
+  <button class="idle-x" type="button" aria-label="Fechar">✕</button>
+  <div class="idle-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c0-3.6 2.9-6.5 6.5-6.5 1.4 0 2.7.4 3.7 1.2"/><path d="M18 13l.9 2.1 2.1.9-2.1.9L18 19l-.9-2.1L15 16l2.1-.9z"/></svg></div>
+  <div class="idle-body">
+    <span class="idle-eye"><i class="live"></i>Teste de perfil comportamental</span>
+    <h3 id="idleTitle">Que tipo de líder<br><span class="grad">você é?</span></h3>
+    <p>Descubra seu perfil comportamental de liderança e entenda como ele influencia a forma como você conduz pessoas, toma decisões e gera resultados.</p>
+    <a class="btn idle-cta" href="https://perfis-realvoce.lovable.app/" target="_blank" rel="noopener">Descobrir meu perfil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+  </div>
+</aside>
+
+<div class="sticky" id="sticky">
+  <div class="p">Escola de Líderes<b>10x R$ 69,79</b></div>
+  <a class="btn" data-checkout href="#">Garantir vaga</a>
+</div>
+
+<script>
+/* ======= CONFIGURAÇÃO: troque aqui ======= */
+const CONFIG = {
+  checkout: 'https://pay.kiwify.com.br/SEU-LINK-AQUI',
+  checkoutDupla: 'https://pay.kiwify.com.br/SEU-LINK-DUPLA-AQUI',
+  whatsapp: 'https://wa.me/5500000000000?text=' + encodeURIComponent('Olá! Quero saber das condições da Escola de Líderes para empresas.'),
+  inicio: '2027-02-15T08:00:00-03:00'
+};
+const ENCONTROS = [
+  ['Fev','Em busca do diamante','O papel do líder no varejo e como enxergar o potencial do seu time.'],
+  ['Mar','Decifre pessoas para influenciar pessoas','DISC aplicado à loja: comunique, cobre e motive cada perfil.'],
+  ['Abr','Liderança pela maturidade do time','Como liderar cada pessoa de acordo com o momento dela.'],
+  ['Mai','Sou novo, e agora? Onboarding','Os primeiros 30 dias que fazem o vendedor ficar e render.'],
+  ['Jun','KPIs da loja','Analisar, interpretar e criar um plano de ação eficaz.'],
+  ['Jul','IA na gestão de pessoas','Ferramentas de inteligência artificial para ganhar tempo na liderança.'],
+  ['Ago','Ferramentas para liderar pessoas','Feedback, reunião, acompanhamento e reconhecimento.'],
+  ['Set','Regras do engajamento','O que realmente faz um time vestir a camisa.'],
+  ['Out','Produtividade do líder','Agenda, delegação e foco no que gera resultado.'],
+  ['Nov','O poder do CRM para atingir metas','Relacionamento que faz o cliente voltar e comprar mais.'],
+  ['Dez','Offboarding estratégico','Desligar com respeito e preservar a cultura do time.']
+];
+const EXTRA = ['Extra','NATAL DE OURO','Estratégias para planejar e liderar a data mais importante do varejo.'];
+
+document.querySelectorAll('[data-checkout]').forEach(a => { a.href = CONFIG.checkout; a.rel = 'noopener'; });
+document.querySelectorAll('[data-checkout-dupla]').forEach(a => { a.href = CONFIG.checkoutDupla; a.rel = 'noopener'; });
+document.querySelectorAll('[data-whats]').forEach(a => { a.href = CONFIG.whatsapp; a.target = '_blank'; a.rel = 'noopener'; });
+// mantém UTMs dos Ads no link do checkout
+(function(){
+  const qs = location.search; if (!qs) return;
+  document.querySelectorAll('[data-checkout],[data-checkout-dupla]').forEach(a => {
+    try { const u = new URL(a.href); new URLSearchParams(qs).forEach((v,k)=>u.searchParams.set(k,v)); a.href = u.toString(); } catch(e){}
+  });
+})();
+
+// timeline
+const tl = document.getElementById('timeline');
+ENCONTROS.forEach((e,i) => {
+  tl.insertAdjacentHTML('beforeend', `<div class="step rv" style="--d:${(i%2)*.06}s"><span class="m">${String(i+1).padStart(2,'0')} · ${e[0]}</span><div><h3>${e[1]}</h3><p>${e[2]}</p></div></div>`);
+});
+tl.insertAdjacentHTML('beforeend', `<div class="step xmas rv"><span class="m">✦ ${EXTRA[0]}</span><div><h3>${EXTRA[1]}</h3><p>${EXTRA[2]}</p></div></div>`);
+
+// oferta: alterna entre inscrição individual e em dupla
+(function(){
+  const tabs = document.querySelector('.plan-tabs'); if (!tabs) return;
+  tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    const plan = b.dataset.plan;
+    tabs.querySelectorAll('button').forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+    tabs.classList.toggle('duo', plan === 'dupla');
+    document.querySelectorAll('.plan').forEach(p => p.hidden = p.dataset.panel !== plan);
+  }));
+})();
+// movimento: variações de entrada, escalonamento e contadores
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // títulos entram com máscara
+  document.querySelectorAll('h2.rv').forEach(h => h.classList.add('rv-mask'));
+  // variações por elemento
+  const add = (sel, cls) => document.querySelectorAll(sel).forEach(el => { el.classList.add('rv', cls); });
+  add('.mentor-photo', 'rv-clip');
+  add('.offer .stack', 'rv-l');
+  add('.offer .price', 'rv-r');
+  add('.company-box', 'rv-zoom');
+  add('.chance', 'rv-zoom');
+  // grupos: filhos entram um após o outro
+  const groups = ['.cards', '.facts', '.timeline', '.stats', '.gallery', '.creds', '.offer .stack', '.faq-grid > div:last-child', '.pillars'];
+  groups.forEach(sel => document.querySelectorAll(sel).forEach(g => {
+    g.classList.remove('rv', 'rv-l', 'rv-r', 'rv-zoom');
+    [...g.children].forEach((c, i) => {
+      if (c.matches('h3')) return;
+      c.classList.add('rv');
+      if (g.matches('.gallery')) c.classList.add('rv-zoom');
+      c.style.setProperty('--d', (Math.min(i, 10) * .08).toFixed(2) + 's');
+    });
+  }));
+  // a pilha da oferta perdeu o rv-l acima; devolve para os filhos
+  document.querySelectorAll('.offer .stack > .si').forEach(el => el.classList.add('rv-l'));
+  // contadores de 0 até o número
+  const counters = [...document.querySelectorAll('[data-count]')];
+  const fmt = (el, v) => (el.dataset.prefix || '') + v + (el.dataset.suffix || '');
+  if (!reduce) counters.forEach(el => el.textContent = fmt(el, 0));
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, n = +el.dataset.count, t0 = performance.now() + 250;
+    if (reduce) { el.textContent = fmt(el, n); return; }
+    const step = t => { const k = Math.max(0, Math.min(1, (t - t0) / 1800)); el.textContent = fmt(el, Math.round(n * (1 - Math.pow(1 - k, 4)))); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }), {threshold:.6});
+  counters.forEach(el => cio.observe(el));
+  // botões magnéticos (só com mouse)
+  if (!reduce && matchMedia('(hover: hover)').matches) document.querySelectorAll('.btn').forEach(b => {
+    b.classList.add('mag');
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left) / r.width - .5) * 10}px, ${((e.clientY - r.top) / r.height - .5) * 8 - 2}px)`; });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+  });
+})();
+
+// reveal
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// nav + sticky + parallax
+const nav = document.getElementById('nav'), sticky = document.getElementById('sticky'), heroImg = document.getElementById('heroImg'), offer = document.getElementById('oferta');
+let ticking = false;
+function onScroll(){
+  const y = scrollY, vh = innerHeight;
+  nav.classList.toggle('scrolled', y > 20);
+  const r = offer.getBoundingClientRect();
+  const inOffer = r.top < vh*.6 && r.bottom > vh*.3;
+  sticky.classList.toggle('on', y > vh*.8 && !inOffer);
+  if (y < vh*1.2) heroImg.style.setProperty('--py', (y*.25)+'px');
+  ticking = false;
+}
+addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(onScroll); ticking = true; } }, {passive:true});
+onScroll();
+
+// card spotlight
+document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove', e => {
+  const b = c.getBoundingClientRect();
+  c.style.setProperty('--mx', (e.clientX-b.left)+'px'); c.style.setProperty('--my', (e.clientY-b.top)+'px');
+}));
+
+// pin: cenas que entram linha por linha conforme o scroll
+(function(){
+  const pin = document.getElementById('pin'); if (!pin) return;
+  const yrs = document.getElementById('yrs');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { pin.classList.add('static'); if (yrs) yrs.textContent = '13'; return; }
+  const stage = pin.querySelector('.pin-stage');
+  const bgs = [...pin.querySelectorAll('.pin-bg img')];
+  const steps = [...pin.querySelectorAll('.pin-steps li')];
+  const scenes = [...pin.querySelectorAll('.scene')].map(el => ({ el, items: [...el.querySelectorAll('[data-l]')] }));
+  const N = scenes.length;
+  const cl = v => Math.max(0, Math.min(1, v));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const sstep = (a, b, x) => { const t = cl((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+  // linha do tempo de cada cena (0..1): entrada, pausa para leitura, saída
+  const IN_A = .03, IN_B = .5, HOLD_END = .72, OUT_B = .97, DUR_IN = .12, DUR_OUT = .09;
+  let counted = false, cRaf = 0;
+  function countUp(){
+    if (!yrs) return; const t0 = performance.now();
+    const step = t => { const k = Math.min(1, (t - t0) / 1600); yrs.textContent = Math.round(13 * (1 - Math.pow(1 - k, 3))); if (k < 1) cRaf = requestAnimationFrame(step); };
+    cRaf = requestAnimationFrame(step);
+  }
+  let raf = 0;
+  function update(){
+    raf = 0;
+    const r = pin.getBoundingClientRect(), total = pin.offsetHeight - innerHeight;
+    const p = cl(-r.top / total);
+    stage.style.setProperty('--p', p);
+    stage.style.setProperty('--gx', (70 - p * 40).toFixed(1) + '%');
+    const cur = Math.min(N - 1, Math.floor(p * N));
+    scenes.forEach((s, i) => {
+      const a = i / N, b = (i + 1) / N, lt = (p - a) / (b - a);
+      // fundo da cena: cruza com o vizinho e faz um zoom lento
+      if (bgs[i]) {
+        const vin = i === 0 ? 1 : sstep(a - .025, a + .025, p);
+        const vout = i === N - 1 ? 1 : 1 - sstep(b - .025, b + .025, p);
+        bgs[i].style.opacity = (vin * vout).toFixed(3);
+        bgs[i].style.transform = `scale(${(1.04 + cl(lt) * .12).toFixed(3)})`;
+      }
+      const n = s.items.length;
+      const inStep = n > 1 ? (IN_B - IN_A - DUR_IN) / (n - 1) : 0;
+      const outStep = n > 1 ? (OUT_B - HOLD_END - DUR_OUT) / (n - 1) : 0;
+      const inA = i === 0 ? -.04 : IN_A;
+      s.items.forEach((el, j) => {
+        const kin = ease(cl((lt - inA - j * inStep) / DUR_IN));
+        const kout = i === N - 1 ? 0 : ease(cl((lt - HOLD_END - j * outStep) / DUR_OUT));
+        const v = kin * (1 - kout), type = el.dataset.l;
+        el.style.opacity = v.toFixed(3);
+        el.style.filter = v < .99 ? `blur(${((1 - v) * 8).toFixed(1)}px)` : 'none';
+        if (type === 'x') el.style.transform = `translate(${((1 - kin) * 90).toFixed(1)}px, ${(-kout * 30).toFixed(1)}px)`;
+        else if (type === 'xl') el.style.transform = `translate(${((1 - kin) * -140).toFixed(1)}px, ${(-kout * 40).toFixed(1)}px)`;
+        else if (type === 'cert') el.style.transform = `perspective(900px) rotateY(${((1 - kin) * -55).toFixed(1)}deg) rotate(${((1 - kin) * -14 - 3).toFixed(1)}deg) scale(${(.7 + .3 * kin).toFixed(3)})`;
+        else el.style.transform = `translateY(${((1 - kin) * 38 - kout * 38).toFixed(1)}px)`;
+        if (type === 'num') {
+          if (kin > .5 && !counted) { counted = true; countUp(); }
+          else if (kin < .02 && counted) { counted = false; cancelAnimationFrame(cRaf); if (yrs) yrs.textContent = '0'; }
+        }
+      });
+    });
+    steps.forEach((li, i) => li.classList.toggle('on', i === cur));
+  }
+  const req = () => { if (!raf) raf = requestAnimationFrame(update); };
+  addEventListener('scroll', req, {passive:true}); addEventListener('resize', req); update();
+})();
+
+// card de perfil: aparece após um tempo sem scroll (uma vez por sessão)
+(function(){
+  const card = document.getElementById('idle'); if (!card) return;
+  const IDLE_MS = 12000, KEY = 'psv_idle_seen';
+  let seen = false;
+  try { seen = sessionStorage.getItem(KEY) === '1'; } catch(e) {}
+  if (seen) return;
+  let timer = 0, shown = false;
+  const show = () => {
+    if (shown) return; shown = true;
+    card.classList.add('on'); card.setAttribute('aria-hidden','false');
+    try { sessionStorage.setItem(KEY,'1'); } catch(e) {}
+    removeEventListener('scroll', arm);
+  };
+  const hide = () => { card.classList.remove('on'); card.setAttribute('aria-hidden','true'); };
+  function arm(){ clearTimeout(timer); if (!shown) timer = setTimeout(show, IDLE_MS); }
+  card.querySelector('.idle-x').addEventListener('click', hide);
+  card.querySelector('.idle-cta').addEventListener('click', () => setTimeout(hide, 300));
+  addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+  addEventListener('scroll', arm, {passive:true});
+  arm();
+})();
+
+// countdown
+const target = new Date(CONFIG.inicio).getTime(), cd = document.getElementById('cd');
+const U = k => cd.querySelector(`[data-u="${k}"]`);
+function tick(){
+  let t = Math.max(0, target - Date.now())/1000;
+  const d = Math.floor(t/86400); t%=86400; const h = Math.floor(t/3600); t%=3600; const m = Math.floor(t/60), s = Math.floor(t%60);
+  U('d').textContent = d; U('h').textContent = String(h).padStart(2,'0'); U('m').textContent = String(m).padStart(2,'0'); U('s').textContent = String(s).padStart(2,'0');
+}
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
