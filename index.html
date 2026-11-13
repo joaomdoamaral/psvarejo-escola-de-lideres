@@ -121,10 +121,15 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 /* capítulos: a foto fica fixa ao fundo de cada capítulo e o conteúdo rola naturalmente por cima */
 .story{overflow:clip}
 .chapters{position:relative;margin:72px 0 24px}
-.chap{position:relative}
-.chap-bg{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;clip-path:inset(var(--ci,0%) round var(--cr,0px));will-change:clip-path}
+.chap{position:relative;isolation:isolate}
+/* a cena atual fica travada no topo enquanto a próxima sobe por cima dela */
+.chap:not(:last-child){padding-bottom:100vh;padding-bottom:100svh}
+.chap + .chap{margin-top:-100vh;margin-top:-100svh}
+.chap-bg{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;clip-path:inset(var(--ci,0%) round var(--cr,0px));transform:translateY(calc(var(--cv,0)*-7%)) scale(calc(1 - var(--cv,0)*.07));filter:brightness(calc(1 - var(--cv,0)*.65));transform-origin:50% 0;will-change:clip-path,transform}
 .chap-bg img{width:100%;height:100%;object-fit:cover;object-position:30% 30%;filter:brightness(.5) saturate(1.15);transform:scale(var(--hs,1.12));will-change:transform}
 .chap-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
+/* a cena que sobe por cima não escurece a borda de cima, para a entrada ficar visível */
+.chap + .chap .chap-bg::after{background:linear-gradient(180deg,rgba(4,5,11,.35) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
 .chap-body{position:relative;z-index:2;margin-top:-100vh;margin-top:-100svh}
 .beat{min-height:85vh;min-height:85svh;display:flex;align-items:center;padding:110px 0 100px}
 .beat-in{width:min(660px,100%)}
@@ -214,6 +219,7 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
   .pin-steps li.done{padding:4px}
   .pin-steps li.on{font-size:10px;gap:6px;padding:4px 12px 4px 4px}
   .chap-bg::after{background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.55) 20%,rgba(4,5,11,.6) 75%,var(--bg) 100%)}
+  .chap + .chap .chap-bg::after{background:linear-gradient(180deg,rgba(4,5,11,.45) 0%,rgba(4,5,11,.55) 20%,rgba(4,5,11,.6) 75%,var(--bg) 100%)}
   .s2-num > span{font-size:34vw}
   .s2-num .plus{font-size:16vw}
   .best{font-size:clamp(38px,11vw,60px)}
@@ -1022,11 +1028,14 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
   function update(){
     raf = 0;
     const vh = innerHeight;
-    chaps.forEach(c => {
+    chaps.forEach((c, i) => {
       const r = c.getBoundingClientRect(); if (r.bottom < -50 || r.top > vh + 50) return;
+      // a próxima cena cobrindo esta: 0 = ainda embaixo, 1 = chegou ao topo
+      const nx = chaps[i + 1], cv = nx ? cl(1 - nx.getBoundingClientRect().top / vh) : 0;
       const bg = c.querySelector('.chap-bg'), enter = cl(r.top / vh); // 1 = ainda abaixo da tela, 0 = fixada
       bg.style.setProperty('--ci', (enter * 9).toFixed(2) + '%');
       bg.style.setProperty('--cr', (enter * 40).toFixed(1) + 'px');
+      bg.style.setProperty('--cv', cv.toFixed(3));
       bg.style.setProperty('--hs', (1.14 - cl(-r.top / Math.max(1, r.height - vh)) * .1).toFixed(3));
     });
     const rr = root.getBoundingClientRect();
