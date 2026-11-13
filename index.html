@@ -118,42 +118,39 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .ans-a{font-size:clamp(16px,1.5vw,20px);color:var(--muted);line-height:1.35}
 .ans-a b{color:#fff;font-weight:600}
 .ans-b{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.8vw,66px);line-height:1;letter-spacing:-.045em;margin-top:6px;background:linear-gradient(95deg,#fff 0%,var(--cyan) 40%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(43,127,255,.35))}
-/* pin: 2 cenas por tela (texto + card flutuante), 1 fundo por tela */
+/* capítulos: a foto fica fixa ao fundo de cada capítulo e o conteúdo rola naturalmente por cima */
 .story{overflow:clip}
-.pin{position:relative;height:600vh;margin:72px 0 24px}
-.pin-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
-.pin-bar{position:absolute;left:0;right:0;top:0;height:3px;background:rgba(255,255,255,.06);z-index:5}
-.pin-bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:linear-gradient(90deg,var(--cyan),var(--blue));box-shadow:0 0 14px var(--blue)}
-.pin-steps{position:absolute;left:50%;bottom:clamp(14px,3vh,30px);transform:translateX(-50%);list-style:none;display:flex;gap:0;pointer-events:none;transition:padding .4s;z-index:5;counter-reset:st;padding:6px;border-radius:999px;background:rgba(4,5,11,.6);border:1px solid var(--line2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.pin-steps li{counter-increment:st;display:flex;align-items:center;gap:8px;padding:5px 14px 5px 5px;border-radius:999px;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;transition:color .4s,background .4s}
-.pin-steps li::before{content:counter(st,decimal-leading-zero);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:10px;letter-spacing:0;transition:all .4s}
-.pin-steps li{max-width:0;opacity:0;padding:5px 0;overflow:hidden;transform:translateX(-14px) scale(.85);transition:max-width .7s cubic-bezier(.2,.9,.2,1),opacity .45s ease,transform .6s cubic-bezier(.2,1.3,.3,1),padding .6s ease,margin .6s ease,color .4s,background .4s}
+.chapters{position:relative;margin:72px 0 24px}
+.chap{position:relative}
+.chap-bg{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;clip-path:inset(var(--ci,0%) round var(--cr,0px));will-change:clip-path}
+.chap-bg img{width:100%;height:100%;object-fit:cover;object-position:30% 30%;filter:brightness(.5) saturate(1.15);transform:scale(var(--hs,1.12));will-change:transform}
+.chap-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
+.chap-body{position:relative;z-index:2;margin-top:-100vh;margin-top:-100svh}
+.beat{min-height:85vh;min-height:85svh;display:flex;align-items:center;padding:110px 0 100px}
+.beat-in{width:min(660px,100%)}
+.beat-r{justify-content:flex-end}
+.beat-r .beat-in{width:min(500px,100%)}
+/* etapas: pílula fixa e clicável enquanto os capítulos estão na tela */
+.pin-steps{position:fixed;left:50%;bottom:calc(clamp(14px,3vh,30px) + env(safe-area-inset-bottom));transform:translate(-50%,16px);opacity:0;pointer-events:none;list-style:none;display:flex;gap:0;z-index:40;counter-reset:st;padding:6px;border-radius:999px;background:rgba(4,5,11,.6);border:1px solid var(--line2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:opacity .45s ease,transform .45s ease}
+.chapters.is-live .pin-steps{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.pin-steps li{counter-increment:st;display:flex;align-items:center;gap:8px;border-radius:999px;font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;cursor:pointer;max-width:0;opacity:0;padding:5px 0;overflow:hidden;transform:translateX(-14px) scale(.85);transition:max-width .7s cubic-bezier(.2,.9,.2,1),opacity .45s ease,transform .6s cubic-bezier(.2,1.3,.3,1),padding .6s ease,margin .6s ease,color .4s,background .4s}
+.pin-steps li::before{content:counter(st,decimal-leading-zero);flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:10px;letter-spacing:0;transition:all .4s}
 .pin-steps li.on,.pin-steps li.done{max-width:240px;opacity:1;transform:none;padding:5px 14px 5px 5px}
 .pin-steps li.on:not(:first-child),.pin-steps li.done:not(:first-child){margin-left:6px}
 .pin-steps li.done{color:rgba(255,255,255,.6)}
+.pin-steps li.done:hover{color:#fff}
 .pin-steps li.on{color:#fff;background:rgba(43,127,255,.2)}
 .pin-steps li.done::before{opacity:.7}
 .pin-steps li.on::before,.pin-steps li.done::before{background:var(--blue);border-color:var(--blue2);box-shadow:0 0 14px rgba(43,127,255,.7)}
-.scene{position:absolute;inset:0;z-index:2;opacity:0;display:flex;align-items:center}
-/* dica de rolagem: aparece quando o usuário para de rolar dentro das cenas */
-.pin-hint{position:fixed;left:50%;bottom:calc(clamp(14px,3vh,30px) + 58px);z-index:6;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;opacity:0;transform:translate(-50%,10px);transition:opacity .45s ease,transform .45s ease}
-.pin-hint.show{opacity:1;transform:translate(-50%,0)}
-.pin-hint span{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.8)}
-.pin-hint i{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(43,127,255,.18);border:1px solid rgba(111,178,255,.5);box-shadow:0 0 24px -4px rgba(43,127,255,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.pin-hint i::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(111,178,255,.6);animation:hintring 1.8s ease-out infinite}
-.pin-hint svg{width:18px;height:18px;color:#fff;animation:hintbob 1.4s ease-in-out infinite}
-@keyframes hintbob{0%,100%{transform:translateY(-3px);opacity:.7}50%{transform:translateY(4px);opacity:1}}
-@keyframes hintring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
-.pin.static .pin-hint{display:none}
-.scene-bg{position:absolute;inset:0}
-.scene-bg img{width:100%;height:100%;object-fit:cover;object-position:30% 30%;filter:brightness(.5) saturate(1.15);transform:scale(var(--hs,1.06));will-change:transform}
-.scene-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.1) 20%,rgba(4,5,11,.25) 75%,var(--bg) 100%),linear-gradient(90deg,rgba(4,5,11,.92) 0%,rgba(4,5,11,.6) 45%,rgba(4,5,11,.25) 100%)}
-.scene-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,90px);align-items:center;padding-top:70px;padding-bottom:90px}
-.part-b{align-self:end;margin-bottom:-10px}
-.glass{position:relative;border-radius:28px;padding:clamp(24px,2.6vw,38px);background:linear-gradient(160deg,rgba(22,40,92,.72),rgba(8,11,23,.82) 70%);border:1px solid rgba(111,178,255,.35);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 40px 100px -30px rgba(0,0,0,.85),0 0 70px -20px rgba(43,127,255,.6);will-change:opacity,transform,filter}
+.glass{position:relative;border-radius:28px;padding:clamp(24px,2.6vw,38px);background:linear-gradient(160deg,rgba(22,40,92,.72),rgba(8,11,23,.82) 70%);border:1px solid rgba(111,178,255,.35);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 40px 100px -30px rgba(0,0,0,.85),0 0 70px -20px rgba(43,127,255,.6)}
 .glass::before{content:"";position:absolute;top:-1px;left:30px;right:30px;height:1px;background:linear-gradient(90deg,transparent,rgba(159,212,255,.9),transparent)}
-.pin:not(.static) [data-l]{opacity:0;will-change:opacity,transform,filter}
-.pin:not(.static) .glass{opacity:0}
+/* revelação: cada item entra em sequência quando o bloco chega ao centro da tela */
+.chapters [data-l],.chapters .glass{transition:opacity .8s ease,transform 1.1s cubic-bezier(.16,1,.3,1),filter .8s ease;transition-delay:calc(var(--i,0)*.11s)}
+.chapters:not(.static) .beat:not(.in) [data-l]{opacity:0;filter:blur(8px);transform:translateY(30px)}
+.chapters:not(.static) .beat:not(.in) [data-l="x"]{transform:translateX(60px)}
+.chapters:not(.static) .beat:not(.in) [data-l="xl"]{transform:translateX(-90px)}
+.chapters:not(.static) .beat:not(.in) .glass{opacity:0;filter:blur(10px);transform:translate(70px,26px) rotate(2deg)}
+.chapters .beat.in .glass{transition-delay:0s}
 .ln{display:block}
 .s-tag{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);margin-bottom:18px}
 .live{width:8px;height:8px;border-radius:50%;background:var(--blue2);animation:pulse 1.8s infinite}
@@ -176,11 +173,10 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .s3-text{margin-top:22px;font-size:clamp(22px,2.15vw,31px)}
 .s3-line{white-space:nowrap}
 .s3-text .hl{color:var(--cyan);text-shadow:0 0 24px rgba(111,178,255,.55)}
-.scene:nth-child(4) .scene-grid{grid-template-columns:1fr 360px;gap:40px}
 .s4-text{font-size:clamp(20px,1.9vw,28px);margin-bottom:26px}
 .cert{line-height:1.2;width:min(100%,360px);aspect-ratio:1.414;border-radius:10px;padding:9px;position:relative;overflow:hidden;background:radial-gradient(120% 90% at 0% 0%,#1d3a82 0%,#0d1b44 45%,#081230 100%);box-shadow:0 30px 80px -20px rgba(0,0,0,.85),0 0 0 1px rgba(226,194,122,.35),0 0 60px -12px rgba(43,127,255,.55);opacity:0;filter:blur(8px);transform:perspective(900px) rotateY(-55deg) rotate(-17deg) scale(.7);transition:opacity .6s ease,filter .6s ease,transform 1.2s cubic-bezier(.2,1.15,.3,1)}
-.cert.cert-in{opacity:1;filter:none;transform:rotate(-3deg)}
-.pin.static .cert{opacity:1;filter:none;transform:rotate(-3deg)}
+.beat.in .cert{opacity:1;filter:none;transform:rotate(-3deg);transition-delay:.55s}
+.chapters.static .cert{opacity:1;filter:none;transform:rotate(-3deg)}
 .cert::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 100% 100%,rgba(226,194,122,.07) 0 1px,transparent 1px 7px),repeating-radial-gradient(circle at 0% 0%,rgba(111,178,255,.06) 0 1px,transparent 1px 9px);pointer-events:none}
 .cert::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,226,160,.28),transparent);transform:skewX(-20deg);animation:certshine 5s ease-in-out infinite;pointer-events:none}
 @keyframes certshine{0%,60%{left:-60%}100%{left:130%}}
@@ -202,29 +198,22 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .cert-seal{position:relative;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff1c4,#e2c27a 42%,#a87b2c 100%);box-shadow:0 0 0 3px rgba(226,194,122,.22),0 4px 12px rgba(0,0,0,.45)}
 .cert-seal::after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px dashed rgba(90,61,12,.55)}
 .cert-seal b{font-family:var(--display);font-size:7.5px;font-weight:800;color:#5a3d0c;letter-spacing:.04em}
-/* sem animação: cenas empilhadas */
-.pin.static{height:auto}
-.pin.static .pin-stage{position:relative;height:auto}
-.pin.static .scene{position:relative;opacity:1}
-.pin.static [data-l],.pin.static .glass{opacity:1}
-.pin.static .pin-steps,.pin.static .pin-bar{display:none}
+/* sem animação: tudo visível, sem janela */
+.chapters.static .chap-bg{clip-path:none}
+.chapters.static .pin-steps{display:none}
 .chance{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:clamp(28px,4vw,48px);border-radius:28px;border:1px solid rgba(111,178,255,.3);background:linear-gradient(135deg,rgba(43,127,255,.22),rgba(14,18,38,.6) 60%);box-shadow:0 40px 120px -40px rgba(43,127,255,.6)}
 .chance h2{font-size:clamp(30px,4.2vw,58px);text-transform:uppercase;letter-spacing:-.04em;line-height:.95}
 .chance p{font-size:clamp(16px,1.25vw,18px);color:#c9d2ee;margin-top:16px;max-width:520px}
 .chance-cta{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 @media(max-width:980px){
-  /* no celular/tablet o texto e o card aparecem em sequência, um por tela, sobre o mesmo fundo */
-  .pin{height:780vh}
-  .scene-grid{display:block;position:absolute;inset:0;padding:0}
-  .part{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:calc(env(safe-area-inset-top) + clamp(92px,15svh,140px)) 22px 170px;opacity:0}
-  .part-b{margin:0;align-self:stretch}
-  .pin-hint{bottom:calc(112px + env(safe-area-inset-bottom))}
-  .pin.static .scene-grid{position:relative}
-  .pin.static .part{position:relative;opacity:1}
+  .beat{padding:96px 0 120px;align-items:center}
+  .beat-r{justify-content:stretch}
+  .beat-in,.beat-r .beat-in{width:100%}
+  .pin-steps{bottom:calc(96px + env(safe-area-inset-bottom))}
   .pin-steps li{font-size:0;gap:0}
   .pin-steps li.done{padding:4px}
   .pin-steps li.on{font-size:10px;gap:6px;padding:4px 12px 4px 4px}
-  .scene-bg::after{background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.55) 20%,rgba(4,5,11,.6) 75%,var(--bg) 100%)}
+  .chap-bg::after{background:linear-gradient(180deg,var(--bg) 0%,rgba(4,5,11,.55) 20%,rgba(4,5,11,.6) 75%,var(--bg) 100%)}
   .s2-num > span{font-size:34vw}
   .s2-num .plus{font-size:16vw}
   .best{font-size:clamp(38px,11vw,60px)}
@@ -233,7 +222,7 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
   .cert{width:min(100%,300px)}
 }
 @media(max-width:760px){
-  .pin{margin-top:56px}
+  .chapters{margin-top:56px}
   /* celular: header sólido, assim o Safari pinta a área da câmera/barra de status com a mesma cor */
   .nav,.nav.scrolled{background:#04050b;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line)}
   .brandfly{gap:0 18px;margin-top:24px}
@@ -565,18 +554,16 @@ body.price-seen .sticky .p .pre{display:none}
 
   </div>
 
-  <!-- PIN: cenas que entram conforme o scroll -->
-  <div class="pin" id="pin">
-    <div class="pin-stage">
-      <div class="pin-bar" aria-hidden="true"><i></i></div>
-      <ol class="pin-steps" aria-hidden="true"><li>Quem sou</li><li>Experiência</li><li>Na prática</li><li>Certificado</li></ol>
-      <div class="pin-hint" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></i><span>Role para continuar</span></div>
+  <!-- CAPÍTULOS: foto fixa ao fundo, conteúdo rola naturalmente por cima -->
+  <div class="chapters" id="chapters">
+    <ol class="pin-steps" aria-label="Etapas"><li>Quem sou</li><li>Experiência</li><li>Na prática</li><li>Certificado</li></ol>
 
-      <!-- tela 1: fundo assets/pin-scroll/1.webp -->
-      <div class="scene">
-        <div class="scene-bg" aria-hidden="true"><img src="assets/pin-scroll/1.webp" alt="" loading="lazy"></div>
-        <div class="wrap scene-grid">
-          <div class="part part-a">
+    <!-- capítulo 1: fundo assets/pin-scroll/1.webp -->
+    <section class="chap">
+      <div class="chap-bg" aria-hidden="true"><img src="assets/pin-scroll/1.webp" alt="" loading="lazy"></div>
+      <div class="wrap chap-body">
+        <div class="beat">
+          <div class="beat-in">
             <span class="s-tag" data-l><i class="live"></i>Quem vai te ensinar</span>
             <p class="s-text">
               <span class="ln" data-l>Aprenda com quem já atuou em <b>grandes marcas</b>
@@ -586,7 +573,9 @@ body.price-seen .sticky .p .pre{display:none}
               <li data-l="x"><img src="assets/logos/dudalina.png" alt="Dudalina" style="height:46px"></li><li data-l="x"><img src="assets/logos/sunglass-hut.png" alt="Sunglass Hut" style="height:29px"></li><li data-l="x"><img src="assets/logos/billabong.png" alt="Billabong" style="height:27px"></li><li data-l="x"><img src="assets/logos/adidas.png" alt="adidas" style="height:51px"></li><li data-l="x"><img src="assets/logos/arezzo.png" alt="Arezzo" style="height:27px"></li><li data-l="x"><img src="assets/logos/reserva.png" alt="Reserva" style="height:28px"></li>
             </ul>
           </div>
-          <div class="part part-b">
+        </div>
+        <div class="beat beat-r">
+          <div class="beat-in">
             <div class="glass">
               <span class="s-tag" data-l>Experiência</span>
               <div class="s2-num" data-l="num"><span class="plus">+</span><span id="yrs">0</span><strong class="s2-anos">anos</strong></div>
@@ -597,18 +586,22 @@ body.price-seen .sticky .p .pre{display:none}
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- tela 2: fundo assets/pin-scroll/2.webp -->
-      <div class="scene">
-        <div class="scene-bg" aria-hidden="true"><img src="assets/pin-scroll/2.webp" alt="" loading="lazy"></div>
-        <div class="wrap scene-grid">
-          <div class="part part-a">
+    <!-- capítulo 2: fundo assets/pin-scroll/2.webp -->
+    <section class="chap">
+      <div class="chap-bg" aria-hidden="true"><img src="assets/pin-scroll/2.webp" alt="" loading="lazy"></div>
+      <div class="wrap chap-body">
+        <div class="beat">
+          <div class="beat-in">
             <span class="best" data-l="xl">E o melhor :</span>
             <p class="s-text s3-text">
               <span class="ln s3-line" data-l>você pode <b class="hl">aplicar</b> tudo no seu <b class="hl">dia a dia</b>,</span>
             </p>
           </div>
-          <div class="part part-b">
+        </div>
+        <div class="beat beat-r">
+          <div class="beat-in">
             <div class="glass">
               <p class="s-text s4-text">
                 <span class="ln" data-l>além de receber um</span>
@@ -625,10 +618,11 @@ body.price-seen .sticky .p .pre{display:none}
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 
   <div class="wrap">
@@ -990,126 +984,59 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
   c.style.setProperty('--mx', (e.clientX-b.left)+'px'); c.style.setProperty('--my', (e.clientY-b.top)+'px');
 }));
 
-// pin: 2 cenas por tela (texto à esquerda + card flutuante), 1 fundo por tela;
-// no celular o texto e o card aparecem um por vez sobre o mesmo fundo
+// capítulos: scroll nativo; a foto de cada capítulo fica fixa e "abre" como uma janela ao entrar,
+// e cada bloco revela seus itens em sequência quando chega ao centro da tela
 (function(){
-  const pin = document.getElementById('pin'); if (!pin) return;
+  const root = document.getElementById('chapters'); if (!root) return;
   const yrs = document.getElementById('yrs');
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { pin.classList.add('static'); if (yrs) yrs.textContent = '13'; return; }
-  const stage = pin.querySelector('.pin-stage');
-  const sceneEls = [...pin.querySelectorAll('.scene')];
-  const parts = [...pin.querySelectorAll('.part')];
-  const steps = [...pin.querySelectorAll('.pin-steps li')];
-  const hint = pin.querySelector('.pin-hint');
-  let idleT = 0;
-  const mq = matchMedia('(max-width: 980px)');
-  const cl = v => Math.max(0, Math.min(1, v));
-  const ease = t => 1 - Math.pow(1 - t, 3);
-  const sstep = (a, b, x) => { const t = cl((x - a) / (b - a)); return t * t * (3 - 2 * t); };
-  // linha do tempo de cada tela (0..1): entrada linha a linha, pausa para leitura, saída escalonada
-  const IN_A = .03, IN_B = .56, HOLD_END = .74, OUT_B = .96, DUR_IN = .1, DUR_OUT = .08;
-  let screens = [], lastActive = 0;
-  function build(){
-    sceneEls.forEach(s => s.style.opacity = '');
-    parts.forEach(pt => pt.style.opacity = '');
-    screens = mq.matches
-      ? parts.map(pt => ({ fade: pt, scene: pt.closest('.scene'), parts: [pt] }))
-      : sceneEls.map(s => ({ fade: s, scene: s, parts: [...s.querySelectorAll('.part')] }));
-    screens.forEach(sc => {
-      sc.items = sc.parts.flatMap(pt => [...pt.querySelectorAll('[data-l]')]);
-      // momento de entrada de cada item: a 2ª cena da tela espera uma pausa (GAP) e entra mais rápido (B_SPEED)
-      const GAP = .14, B_SPEED = .6, span = IN_B - IN_A - DUR_IN;
-      const na = sc.parts[0].querySelectorAll('[data-l]').length, nb = sc.items.length - na;
-      if (nb > 0) {
-        const u = (span - GAP) / Math.max(1, (na - 1) + (nb - 1) * B_SPEED);
-        sc.items.forEach((el, j) => { el._start = j < na ? j * u : (na - 1) * u + GAP + (j - na) * u * B_SPEED; });
-      } else {
-        const u = na > 1 ? span / (na - 1) : 0;
-        sc.items.forEach((el, j) => { el._start = j * u; });
-      }
-    });
+  const chaps = [...root.querySelectorAll('.chap')];
+  const beats = [...root.querySelectorAll('.beat')];
+  const steps = [...root.querySelectorAll('.pin-steps li')];
+  beats.forEach(bt => bt.querySelectorAll('[data-l]').forEach((el, i) => el.style.setProperty('--i', i)));
+  steps.forEach((li, i) => li.addEventListener('click', () => {
+    const b = beats[i]; if (!b) return;
+    const box = b.querySelector('.beat-in').getBoundingClientRect();
+    scrollTo({ top: scrollY + box.top - (innerHeight - box.height) / 2, behavior: 'smooth' });
+  }));
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    root.classList.add('static'); beats.forEach(b => b.classList.add('in')); if (yrs) yrs.textContent = '13'; return;
   }
-  let counted = false, cRaf = 0;
+  let cRaf = 0;
   function countUp(){
-    if (!yrs) return; const t0 = performance.now();
+    if (!yrs) return; cancelAnimationFrame(cRaf); const t0 = performance.now();
     const step = t => { const k = Math.min(1, (t - t0) / 1600); yrs.textContent = Math.round(13 * (1 - Math.pow(1 - k, 3))); if (k < 1) cRaf = requestAnimationFrame(step); };
     cRaf = requestAnimationFrame(step);
   }
-  let raf = 0;
+  // entra ao cruzar a faixa central; só "reinicia" se o bloco sair por baixo (rolando de volta para cima)
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const b = e.target.closest('.beat');
+    if (e.isIntersecting) {
+      if (!b.classList.contains('in')) { b.classList.add('in'); if (b.contains(yrs)) countUp(); }
+    } else if (e.boundingClientRect.top > 0) {
+      b.classList.remove('in'); if (b.contains(yrs)) { cancelAnimationFrame(cRaf); yrs.textContent = '0'; }
+    }
+  }), { rootMargin: '-22% 0px -22% 0px' });
+  beats.forEach(b => io.observe(b.querySelector('.beat-in')));
+  const cl = v => Math.max(0, Math.min(1, v));
+  let raf = 0, last = -1;
   function update(){
     raf = 0;
-    const r = pin.getBoundingClientRect(), total = pin.offsetHeight - innerHeight;
-    const pRaw = -r.top / total, p = cl(pRaw);
-    stage.style.setProperty('--p', p);
-    const N = screens.length, sceneVis = new Map();
-    screens.forEach((sc, i) => {
-      const a = i / N, b = (i + 1) / N, lt = ((i === 0 ? pRaw : p) - a) / (b - a);
-      const vin = i === 0 ? 1 : sstep(a - .02, a + .02, p);
-      const vout = i === N - 1 ? 1 : 1 - sstep(b - .02, b + .02, p);
-      const vis = vin * vout;
-      sc.fade.style.opacity = vis.toFixed(3);
-      sceneVis.set(sc.scene, Math.max(sceneVis.get(sc.scene) || 0, vis));
-      const n = sc.items.length;
-      const outStep = n > 1 ? (OUT_B - HOLD_END - DUR_OUT) / (n - 1) : 0;
-      const inA = i === 0 ? -(.45 * innerHeight / total) * N : IN_A; // a 1ª cena começa a entrar antes da tela fixar
-      sc.items.forEach((el, j) => {
-        const kin = ease(cl((lt - inA - el._start) / DUR_IN));
-        const kout = i === N - 1 ? 0 : ease(cl((lt - HOLD_END - j * outStep) / DUR_OUT));
-        const v = kin * (1 - kout), type = el.dataset.l;
-        el._kin = kin; el._v = v;
-        el.style.opacity = v.toFixed(3);
-        el.style.filter = v < .99 ? `blur(${((1 - v) * 8).toFixed(1)}px)` : 'none';
-        if (type === 'x') el.style.transform = `translate(${((1 - kin) * 70).toFixed(1)}px, ${(-kout * 30).toFixed(1)}px)`;
-        else if (type === 'xl') el.style.transform = `translate(${((1 - kin) * -110).toFixed(1)}px, ${(-kout * 36).toFixed(1)}px)`;
-        else el.style.transform = `translateY(${((1 - kin) * 34 - kout * 34).toFixed(1)}px)`;
-        if (type === 'num') {
-          if (kin > .5 && !counted) { counted = true; countUp(); }
-          else if (kin < .02 && counted) { counted = false; cancelAnimationFrame(cRaf); if (yrs) yrs.textContent = '0'; }
-        }
-      });
-      // certificado: entra sozinho (animação por tempo) assim que a linha "certificado no final" aparece
-      sc.parts.forEach(pt => {
-        const c = pt.querySelector('.cert'); if (!c) return;
-        const its = [...pt.querySelectorAll('[data-l]')], last = its[its.length - 1];
-        if (last._v > .6) c.classList.add('cert-in'); else if (last._v < .2) c.classList.remove('cert-in');
-      });
-      // card de vidro: entra com o primeiro item de dentro e sai com o último
-      sc.parts.forEach(pt => {
-        const g = pt.querySelector('.glass'); if (!g) return;
-        const its = [...g.querySelectorAll('[data-l]')];
-        const kin = its[0]._kin, v = Math.max(...its.map(e => e._v));
-        g.style.opacity = v.toFixed(3);
-        g.style.transform = `translate(${((1 - kin) * 80).toFixed(1)}px, ${((1 - kin) * 30).toFixed(1)}px) rotate(${((1 - kin) * 2).toFixed(2)}deg)`;
-        g.style.filter = v < .99 ? `blur(${((1 - v) * 10).toFixed(1)}px)` : 'none';
-      });
-      // fundo: zoom lento ao longo da tela
-      const img = sc.scene.querySelector('.scene-bg img');
-      if (img && sc.fade === sc.scene) img.style.setProperty('--hs', (1.04 + cl(lt) * .12).toFixed(3));
+    const vh = innerHeight;
+    chaps.forEach(c => {
+      const r = c.getBoundingClientRect(); if (r.bottom < -50 || r.top > vh + 50) return;
+      const bg = c.querySelector('.chap-bg'), enter = cl(r.top / vh); // 1 = ainda abaixo da tela, 0 = fixada
+      bg.style.setProperty('--ci', (enter * 9).toFixed(2) + '%');
+      bg.style.setProperty('--cr', (enter * 40).toFixed(1) + 'px');
+      bg.style.setProperty('--hs', (1.14 - cl(-r.top / Math.max(1, r.height - vh)) * .1).toFixed(3));
     });
-    if (mq.matches) sceneEls.forEach(s => {
-      s.style.opacity = (sceneVis.get(s) || 0).toFixed(3);
-      const own = screens.filter(sc => sc.scene === s), a = screens.indexOf(own[0]) / N, b = (screens.indexOf(own[own.length - 1]) + 1) / N;
-      const img = s.querySelector('.scene-bg img'); if (img) img.style.setProperty('--hs', (1.04 + cl((p - a) / (b - a)) * .12).toFixed(3));
-    });
-    // etapa ativa: a última parte cujo conteúdo já começou a aparecer
-    let active = -1;
-    parts.forEach((pt, k) => { const first = pt.querySelector('[data-l]'); if (first && first._v > .3) active = k; });
-    if (active < 0) active = lastActive; lastActive = active;
-    steps.forEach((li, i) => { li.classList.toggle('on', i === active); li.classList.toggle('done', i < active); });
+    const rr = root.getBoundingClientRect();
+    root.classList.toggle('is-live', rr.top < vh * .45 && rr.bottom > vh * .55);
+    let active = 0;
+    beats.forEach((b, i) => { if (b.querySelector('.beat-in').getBoundingClientRect().top < vh * .6) active = i; });
+    if (active !== last) { last = active; steps.forEach((li, i) => { li.classList.toggle('on', i === active); li.classList.toggle('done', i < active); }); }
   }
-  // dica "role para continuar": some enquanto rola e volta após uma pausa (até a última cena)
-  function hintIdle(){
-    if (!hint) return;
-    hint.classList.remove('show'); clearTimeout(idleT);
-    idleT = setTimeout(() => {
-      const r = pin.getBoundingClientRect(), p = -r.top / (pin.offsetHeight - innerHeight);
-      if (r.top < innerHeight * .8 && p < 1 - .4 / screens.length) hint.classList.add('show'); // some quando a última cena já entrou
-    }, 600);
-  }
-  const req = () => { if (!raf) raf = requestAnimationFrame(update); hintIdle(); };
-  build();
-  mq.addEventListener('change', () => { build(); update(); });
-  addEventListener('scroll', req, {passive:true}); addEventListener('resize', req); update();
+  const req = () => { if (!raf) raf = requestAnimationFrame(update); };
+  addEventListener('scroll', req, { passive: true }); addEventListener('resize', req); update();
 })();
 
 // card de perfil: aparece após um tempo sem scroll (uma vez por sessão)
