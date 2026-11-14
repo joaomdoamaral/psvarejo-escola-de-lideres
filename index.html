@@ -44,11 +44,12 @@ h2{font-size:clamp(28px,3.6vw,46px)}
 section{position:relative}
 .sec{padding:clamp(80px,11vw,140px) 0}
 
-/* grain overlay */
-body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100;opacity:.07;
+/* grain overlay: começa abaixo do header e fica por baixo dele. No iPhone o Safari pinta a área
+   da câmera com a cor do elemento fixo que está no topo; se for esta camada transparente, o site aparece ali */
+body::after{content:"";position:fixed;top:var(--header-total);left:0;right:0;bottom:0;pointer-events:none;z-index:45;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:grain 1.2s steps(6) infinite}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+@keyframes grain{0%{background-position:0 0}20%{background-position:-37px 23px}40%{background-position:29px -41px}60%{background-position:-23px -13px}80%{background-position:43px 37px}100%{background-position:0 0}}
 
 /* buttons */
 .btn{--h:62px;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;height:var(--h);padding:0 32px;border-radius:999px;
