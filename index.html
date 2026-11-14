@@ -83,6 +83,11 @@ body::after{content:"";position:fixed;top:var(--header-total);left:0;right:0;bot
 .dot{width:8px;height:8px;border-radius:50%;background:#35e08a;box-shadow:0 0 0 0 rgba(53,224,138,.6);animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,224,138,.55)}70%{box-shadow:0 0 0 10px rgba(53,224,138,0)}100%{box-shadow:0 0 0 0 rgba(53,224,138,0)}}
 @media(min-width:900px){.nav .pill{display:flex}}
+/* celular/tablet: rolagem leve — foto do hero parada (sem parallax nem filtro) e granulado sem animação */
+@media(max-width:760px),(hover:none) and (pointer:coarse){
+  .hero-bg img{height:100%;transform:none;filter:none}
+  body::after{animation:none}
+}
 /* celular e tablet (qualquer largura, inclusive deitado): header sólido, assim o Safari
    pinta a área da câmera/barra de status com a mesma cor e nada do site aparece por trás */
 @media(max-width:760px),(hover:none) and (pointer:coarse){
@@ -493,6 +498,14 @@ body.price-seen .sticky .p .pre{display:none}
   .wrap{padding:0 20px}
   .hero{padding:calc(var(--header-total) + 44px) 0 36px}
   .hero-bg img{object-position:60% 30%}
+  /* celular: escurece mais atrás do texto (fica sobre as luzes do teto) */
+  .hero-bg::after{background:
+    linear-gradient(180deg,rgba(4,5,11,.62) 0%,rgba(4,5,11,.76) 22%,rgba(4,5,11,.8) 55%,rgba(4,5,11,.9) 78%,var(--bg) 100%),
+    linear-gradient(90deg,rgba(255,91,46,.14) 0%,transparent 22%)}
+  .hero h1,.hero .lead{text-shadow:0 2px 18px rgba(0,0,0,.65)}
+  /* filtro de sombra em texto com degradê fica borrado no iPhone; o fundo já está escuro o bastante */
+  .hero h1 .grad{filter:none}
+  .hero .lead{color:#e6eaf7}
   .hero-meta{grid-template-columns:1fr 1fr;margin-top:40px}
   .hero-meta > div{padding:16px 18px;border-left:0;border-top:1px solid var(--line)}
   .hero-meta > div:nth-child(-n+2){border-top:0}
@@ -985,13 +998,15 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 // nav + sticky + parallax
 const nav = document.getElementById('nav'), sticky = document.getElementById('sticky'), heroImg = document.getElementById('heroImg'), offer = document.getElementById('oferta');
 let ticking = false;
+// parallax do hero só no desktop: no celular mover a foto a cada rolagem causa travadas
+const parallax = !matchMedia('(max-width: 760px), (hover: none) and (pointer: coarse)').matches;
 function onScroll(){
   const y = scrollY, vh = innerHeight;
   nav.classList.toggle('scrolled', y > 20);
   const r = offer.getBoundingClientRect();
   const inOffer = r.top < vh*.6 && r.bottom > vh*.3;
   sticky.classList.toggle('on', y > vh*.8 && !inOffer);
-  if (y < vh*1.2) heroImg.style.setProperty('--py', (y*.25)+'px');
+  if (parallax && y < vh*1.2) heroImg.style.setProperty('--py', (y*.25)+'px');
   ticking = false;
 }
 addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(onScroll); ticking = true; } }, {passive:true});
@@ -1038,7 +1053,9 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
   }), { rootMargin: '-22% 0px -22% 0px' });
   beats.forEach(b => io.observe(b.querySelector('.beat-in')));
   const cl = v => Math.max(0, Math.min(1, v));
-  let raf = 0, last = -1;
+  let raf = 0, last = -1, stickTop = 0;
+  const measure = () => { stickTop = beats[0] ? parseFloat(getComputedStyle(beats[0]).top) || 0 : 0; };
+  measure(); addEventListener('resize', measure);
   function update(){
     raf = 0;
     const vh = innerHeight;
@@ -1059,7 +1076,7 @@ document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove'
       const nx = beats[i + 1], inner = b.querySelector('.beat-in');
       let f = 0;
       if (nx && nx.parentNode === b.parentNode) {
-        const stick = parseFloat(getComputedStyle(b).top), gap = nx.getBoundingClientRect().top - stick;
+        const gap = nx.getBoundingClientRect().top - stickTop;
         f = cl(1 - gap / (vh * .32));
       }
       inner.style.opacity = f ? (1 - f).toFixed(3) : '';
