@@ -26,9 +26,11 @@
   --r:22px;
   --display:'Sora',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
   --max:1180px;
+  /* header + área da câmera/barra de status (iPhone) */
+  --header-h:76px; --safe-top:env(safe-area-inset-top,0px); --header-total:calc(var(--header-h) + var(--safe-top));
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:#04050b;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{background:#04050b;scroll-behavior:smooth;scroll-padding-top:var(--header-total);-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -64,10 +66,12 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .btn.block{width:100%}
 
 /* nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top);transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
-.nav::before{content:"";position:absolute;left:0;right:0;top:0;height:env(safe-area-inset-top);background:#04050b;pointer-events:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;box-sizing:border-box;height:var(--header-total);padding-top:var(--safe-top);transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
+/* faixa da câmera/barra de status sempre na cor do header, e uma extensão para cima
+   que cobre qualquer espaço acima dele (puxar a página, barra do Safari/WhatsApp animando) */
+.nav::before{content:"";position:absolute;left:0;right:0;bottom:calc(100% - var(--safe-top));height:calc(var(--safe-top) + 200px);background:#04050b;pointer-events:none}
 .nav.scrolled{background:rgba(4,5,11,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--header-h)}
 .nav img{height:26px;width:auto}
 .nav .brand{display:flex;align-items:center;gap:16px}
 .brand-sep{width:1px;height:28px;background:linear-gradient(180deg,transparent,rgba(159,212,255,.7),transparent)}
@@ -78,9 +82,14 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .dot{width:8px;height:8px;border-radius:50%;background:#35e08a;box-shadow:0 0 0 0 rgba(53,224,138,.6);animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,224,138,.55)}70%{box-shadow:0 0 0 10px rgba(53,224,138,0)}100%{box-shadow:0 0 0 0 rgba(53,224,138,0)}}
 @media(min-width:900px){.nav .pill{display:flex}}
+/* celular e tablet (qualquer largura, inclusive deitado): header sólido, assim o Safari
+   pinta a área da câmera/barra de status com a mesma cor e nada do site aparece por trás */
+@media(max-width:760px),(hover:none) and (pointer:coarse){
+  .nav,.nav.scrolled{background:#04050b;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line)}
+}
 
 /* HERO */
-.hero{min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 56px;overflow:hidden}
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:calc(var(--header-total) + 64px) 0 56px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:115%;object-fit:cover;object-position:center 40%;transform:translateY(var(--py,0));filter:saturate(1.1) contrast(1.05)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:
@@ -120,7 +129,7 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 .ans-b{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.8vw,66px);line-height:1;letter-spacing:-.045em;margin-top:6px;background:linear-gradient(95deg,#fff 0%,var(--cyan) 40%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(43,127,255,.35))}
 /* capítulos: a foto fica fixa ao fundo de cada capítulo e o conteúdo rola naturalmente por cima */
 .story{overflow:clip}
-.chapters{position:relative;margin:72px 0 24px;--stick:calc(76px + env(safe-area-inset-top) + clamp(16px,4vh,40px))}
+.chapters{position:relative;margin:72px 0 24px;--stick:calc(var(--header-total) + clamp(16px,4vh,40px))}
 .chap{position:relative;isolation:isolate}
 /* a cena atual fica travada no topo enquanto a próxima sobe por cima dela */
 .chap + .chap{margin-top:-100vh;margin-top:-100svh}
@@ -233,8 +242,6 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:100
 }
 @media(max-width:760px){
   .chapters{margin-top:56px}
-  /* celular: header sólido, assim o Safari pinta a área da câmera/barra de status com a mesma cor */
-  .nav,.nav.scrolled{background:#04050b;backdrop-filter:none;-webkit-backdrop-filter:none;border-color:var(--line)}
   .brandfly{gap:0 18px;margin-top:24px}
   .chance-cta,.chance-cta .btn{width:100%}
 }
@@ -482,7 +489,7 @@ body.price-seen .sticky .p .pre{display:none}
 @media(max-width:760px){
   body{font-size:16px}
   .wrap{padding:0 20px}
-  .hero{padding:120px 0 36px}
+  .hero{padding:calc(var(--header-total) + 44px) 0 36px}
   .hero-bg img{object-position:60% 30%}
   .hero-meta{grid-template-columns:1fr 1fr;margin-top:40px}
   .hero-meta > div{padding:16px 18px;border-left:0;border-top:1px solid var(--line)}
