@@ -3,5 +3,6 @@ index-anterior.html
 index-atual-backup.html
 # arquivos originais (fotos em alta e logo .ai)
 imagens/
-# configuração local do editor
-.claude/
+# configuração local do editor (as skills ficam no repositório)
+.claude/*
+!.claude/skills/
