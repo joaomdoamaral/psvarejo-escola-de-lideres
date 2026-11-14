@@ -58,7 +58,11 @@ Os culpados mais comuns:
    body::after{position:fixed;top:var(--header-total);left:0;right:0;bottom:0;z-index:45}
    ```
    Para animar um granulado, anime `background-position`, não `transform` com `inset` negativo.
-6. **Tudo que depende do header usa `--header-total`:** `scroll-padding-top`, `top` de
+6. **Cuidado ao dar cor de fundo ao `html`:** com isso o fundo do `body` deixa de cobrir a página
+   toda por baixo e passa a ser pintado por cima de qualquer elemento com `z-index` negativo
+   (fotos de fundo do hero, de seções etc.), que somem. Procure `z-index:-` e coloque
+   `isolation:isolate` na seção que contém o elemento (ex.: `.hero{isolation:isolate}`).
+7. **Tudo que depende do header usa `--header-total`:** `scroll-padding-top`, `top` de
    elementos `sticky`, `padding-top` do hero/primeira seção, `scroll-margin-top` de âncoras.
 
 ## Como verificar
